@@ -6,7 +6,6 @@ import jakarta.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AladinItem {
-
 	@XmlElement(name = "title", namespace = "http://www.aladin.co.kr/ttb/apiguide.aspx")
 	private String title;
 
@@ -62,5 +61,4 @@ public class AladinItem {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 }

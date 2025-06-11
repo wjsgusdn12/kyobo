@@ -27,7 +27,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class DetailController {
-
 	private final DetailService detailService;
 	private final DetailRepository detailRepository;
 	private final ReviewService reviewService;
@@ -78,5 +77,4 @@ public class DetailController {
 		model.addAttribute("comment", comment);
 		return "commentItem :: comment"; // Thymeleaf fragment 이름
 	}
-
 }

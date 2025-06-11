@@ -24,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class ReviewController {
-	
 	private final ReviewService reviewService;
 	private final DetailRepository detailRepository;
 	private final DetailService detailService;

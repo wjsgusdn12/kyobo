@@ -19,7 +19,6 @@ import lombok.Setter;
 @Entity
 @Table(name="cart_item")
 public class CartItem {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_cartItem_idx")
 	@SequenceGenerator(
@@ -36,5 +35,4 @@ public class CartItem {
 	private Detail detail;
 	
 	private Integer count;
-
 }

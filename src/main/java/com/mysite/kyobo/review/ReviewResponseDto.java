@@ -15,7 +15,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ReviewResponseDto {
-	
 	public ReviewResponseDto(Integer reviewIdx, String content, Integer score, LocalDateTime createDate, 
 			String memberId){
 		 System.out.println("DTO 생성자 호출됨: " + reviewIdx + ", " + memberId);
@@ -24,23 +23,12 @@ public class ReviewResponseDto {
 		this.score = score;
 		this.createDate = createDate;
 		this.memberId= memberId;
-		
 	}
 	
-	
 	private Integer reviewIdx;
-	
 	private LocalDateTime createDate;
-	
 	private String memberId;
-	
 	private String content;
-	
 	private Integer score;
-	
 	private Set<ReviewCommentResponseDto> commentList; 
-	
-	
-	
-
 }

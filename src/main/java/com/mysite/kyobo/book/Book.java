@@ -20,7 +20,6 @@ import lombok.Setter;
 @Setter
 @Entity 
 public class Book {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_book_idx")
 	@SequenceGenerator(
@@ -51,5 +50,4 @@ public class Book {
 	@Lob
 	@Column(name = "CONTENT")
 	private String introduction;
-	
 }

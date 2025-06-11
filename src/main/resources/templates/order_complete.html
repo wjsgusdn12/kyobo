@@ -1,19 +1,15 @@
 <html layout:decorate="~{layout}">
 <th:block layout:fragment="css">
 	<style>
-		
-
 		.footer {
 			width: 100%;
 			height: 302px;
 			background-color: cornflowerblue;
 		}
-
 		.content {
 			width: 1200px;
 			margin: 125px auto 0;
 		}
-
 		/*주문 진행 상태 */
 		.cart_top_wrap_right {
 			width: 369px;
@@ -22,7 +18,6 @@
 			display: flex;
 			justify-content: space-around;
 		}
-
 		.page_icon {
 			width: 20px;
 			height: 20px;
@@ -31,40 +26,32 @@
 			display: inline-block;
 			text-align: center;
 		}
-
 		.active {
 			background-color: #4dac27;
 		}
-
 		.inactive {
 			background-color: #d5d5d5;
 		}
-
 		/*주문 진행 상태 */
 		.contents_inner {
 			width: 700px;
 			margin: 0 auto;
 		}
-
 		.completion_note {
 			height: 66px;
 			text-align: center;
 			margin: 55px 0;
 		}
-
 		.completion_note>span {
 			font-size: 25px;
 			font-weight: 700;
-
 		}
-
 		.ordered_product_item {
 			border: 1px solid #ccc;
 			border-radius: 12px;
 			box-sizing: border-box;
 			margin: 20px 0;
 		}
-
 		.ordered_product_item_header {
 			height: 83px;
 			border-bottom: 1px solid #ccc;
@@ -72,7 +59,6 @@
 			padding: 28px;
 			font-weight: 700;
 		}
-
 		/*주문 진행 상태 */
 		/*주문 상품*/
 		.ordered_product_item_content {
@@ -82,28 +68,22 @@
 			gap: 21px;
 			border-bottom: 1px dotted #ccc;
 		}
-
 		/* 모든 항목에 기본 border 제거 */
 		.ordered_product_item_content {
 		  border-bottom: none;
 		}
-
 		/* 여러 개일 때 → 마지막을 제외한 항목에만 dotted border */
 		.ordered_product_item_content:not(:last-of-type):nth-last-of-type(n+2) {
 		  border-bottom: 1px dotted #ccc;
 		}
-
 		.ordered_product_img>img {
 			width: 82px;
 			height: auto;
-
 		}
-
 		.ordered_product_titleCount {
 			font-size: 14px;
 			font-weight: 600;
 		}
-
 		.morning_delivery {
 			border-radius: 20px;
 			font-size: 14px;
@@ -111,9 +91,7 @@
 			width: 66px;
 			text-align: center;
 			background: #ebd5eb;
-
 		}
-
 		/*주문 상품*/
 		/*결제 정보*/
 		.payment_information{
@@ -128,20 +106,16 @@
 			padding: 32px;
 			margin: 10px 0;
 		}
-
 		.payment_information_title {
 			font-weight: 700;
 			margin-right: 41px;
 		}
-
 		.payment_information_totalPrice {
 			color: #832383;
 			font-weight: 700;
 			font-size: 20px;
 		}
-
 		/*결제 정보*/
-
 		/*배송지 정보*/
 		.delivery_address_information {
 			width: 698px;
@@ -150,25 +124,17 @@
 			box-sizing: border-box;
 			padding: 23px 28px;
 			margin: 20px 0;
-
 		}
-
 		.delivery_address_information span {
-
 			font-size: 14px;
 		}
-
 		.delivery_address_information_title {
 			margin-right: 67px;
 			font-weight: 700;
-
 		}
-
 		.spacing {
 			margin: 20px 0;
-
 		}
-
 		/*배송지 정보*/
 		.continue_shoppingBtn {
 			width: 200px;
@@ -215,7 +181,6 @@
 			left: 840px;
 		}
 	</style>
-
 </th:block>
 <th:block layout:fragment="script">
 	<script>
@@ -301,14 +266,7 @@
 		<button class="continue_shoppingBtn" onclick="location.href='/kyobo'">
 			쇼핑 계속하기
 		</button>
-
-
 	</div>
 </div>
 <div layout:fragment="footer" class="footer"></div>
-<script>
-	document.addEventListener('DOMContentLoaded', function(){
-		alert("!");
-	});
-</script>
 </html>

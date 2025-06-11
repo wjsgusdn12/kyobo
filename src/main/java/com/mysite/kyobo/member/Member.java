@@ -15,7 +15,6 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Member {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_member_idx")
 	@SequenceGenerator(
@@ -40,5 +39,4 @@ public class Member {
 	
 	@Column(name = "join_date", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT SYSDATE")
     private LocalDateTime joinDate;
-	
 }

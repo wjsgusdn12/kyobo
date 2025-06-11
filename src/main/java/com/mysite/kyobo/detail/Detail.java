@@ -46,10 +46,8 @@ public class Detail {
 	@Column(length=200)
 	private String introductionImg;
 	
-	
 	@Column(length=200)
 	private String publisher;
-	
 	
 	@Column(length=100)
 	private String isbn;
@@ -61,5 +59,4 @@ public class Detail {
 	@Lob
 	@Column(columnDefinition = "CLOB")
 	private String bookReview;
-
 }

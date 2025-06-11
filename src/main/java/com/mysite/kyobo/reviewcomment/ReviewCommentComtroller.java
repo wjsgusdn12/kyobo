@@ -51,25 +51,12 @@ public class ReviewCommentComtroller {
 		result.put("content", reviewComment.getContent());
 		
 		return ResponseEntity.ok(result);
-		
 	}
-	
 	
 	@PostMapping("/comment/delete")
 	@ResponseBody
 	public String commentDelete(@RequestParam("commentIdx") Integer commentIdx) {
 		this.commentService.deleteComment(commentIdx);
 		return "success";
-		
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

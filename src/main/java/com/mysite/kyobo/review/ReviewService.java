@@ -39,50 +39,7 @@ public class ReviewService {
 		r.setAuthor(member);
 		r.setCreateDate(LocalDateTime.now());
 		this.reviewRepository.save(r);
-
 	}
-
-	// 페이징 처리 
-//	public Page<ReviewResponseDto> getReviewListWithComments(String isbn, Pageable pageable) {
-//	    // 만약 pageable에 정렬 조건이 없다면 기본 정렬을 추가
-//	    if (pageable.getSort().isUnsorted()) {
-//	        pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "createDate"));
-//	    }
-//
-//	    // 1) Review 엔티티 페이징 조회
-//	    Page<Review> reviewEntities = reviewRepository.findByIsbnWithAuthorAndDetail(isbn, pageable);
-//
-//	    // 이하 동일하게 DTO 변환 및 댓글 세팅
-//	    Page<ReviewResponseDto> reviewDtos = reviewEntities.map(r -> {
-//	        ReviewResponseDto dto = new ReviewResponseDto(
-//	                r.getReviewIdx(),
-//	                r.getContent(),
-//	                r.getScore(),
-//	                r.getCreateDate(),
-//	                r.getAuthor().getId()
-//	        );
-//
-//	        List<ReviewComment> comments = reviewCommentRepository.findByReviewIdx(r.getReviewIdx());
-//
-//	        Set<ReviewCommentResponseDto> commentDtoSet = comments.stream()
-//	                .map(rc -> new ReviewCommentResponseDto(
-//	                        rc.getCommentIdx(),
-//	                        rc.getContent(),
-//	                        rc.getCreateDate(),
-//	                        rc.getMember().getId()
-//	                ))
-//	                .collect(Collectors.toSet());
-//
-//	        dto.setCommentList(commentDtoSet);
-//	        return dto;
-//	    });
-//
-//	    // 디버깅 출력
-//	    System.out.println("리뷰 총 개수: " + reviewDtos.getTotalElements());
-//	    reviewDtos.forEach(review -> System.out.println("ReviewIdx: " + review.getReviewIdx()));
-//
-//	    return reviewDtos;
-//	}
 	
 	public Page<ReviewResponseDto> getReviewListWithComments(String isbn, int page, int size) {
 	    int startRow = page * size;
@@ -118,9 +75,4 @@ public class ReviewService {
 
 	    return new PageImpl<>(dtoList, PageRequest.of(page, size), totalCount);
 	}
-
-
-
-	
-
 }

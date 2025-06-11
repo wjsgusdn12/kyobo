@@ -18,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class BookController {
-
 	private final BookService bookService;
 	
 	@GetMapping("/book/search_result")
@@ -65,5 +64,4 @@ public class BookController {
 
 	    return "search_result";
 	}
-	
 }

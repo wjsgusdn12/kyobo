@@ -11,7 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BookDto {
-
 	private int bookIdx;
 	private String bookName;
 	private int price;

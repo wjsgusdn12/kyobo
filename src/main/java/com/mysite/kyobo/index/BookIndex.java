@@ -30,5 +30,4 @@ public class BookIndex {
 	private Detail detail;
 	
 	private String indexName;
-
 }

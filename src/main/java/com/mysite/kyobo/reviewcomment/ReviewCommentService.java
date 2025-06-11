@@ -29,7 +29,6 @@ public class ReviewCommentService {
 		c.setCreateDate(LocalDateTime.now());
 		c.setMember(meber);
 		return this.commentRepository.save(c); //save 메서드는 객체를 저장하고 반환해줌 
-
 	}
 	
 	//update하는 메서드 
@@ -40,8 +39,6 @@ public class ReviewCommentService {
 		reviewComment.setContent(commentData);
 		reviewComment.setCreateDate(LocalDateTime.now());
 		return this.commentRepository.save(reviewComment);
-		
-		
 	}
 	
 	//삭제하는 메서드 
@@ -50,7 +47,4 @@ public class ReviewCommentService {
 		.orElseThrow(()-> new DataNotFoundException("해당 리뷰를 찾을 수 없습니다."));
 		this.commentRepository.delete(reviewComment);
 	}
-	
-	
-
 }

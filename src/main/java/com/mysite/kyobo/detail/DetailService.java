@@ -17,10 +17,8 @@ import java.util.List;
 
 @Service
 public class DetailService {
-
 	@Autowired
 	private RestTemplate restTemplate; // RestTemplate는 스프링에서 외부 API를 호출할 때 쓰는 도구
-	
 	@Autowired
 	private DetailRepository detailRepository;
 
@@ -40,7 +38,6 @@ public class DetailService {
 
 	    return detailXml;
 	}
-
 	
 	//xml 형식을 dto 로 변환하는 메서드 
 	private DetailAladinDto parseXml(String xml) throws Exception {
@@ -64,9 +61,4 @@ public class DetailService {
 		return this.detailRepository.findWithReviewsAndCommentsByIsbn(postIsbn)
 				.orElseThrow(()-> new DataNotFoundException("해당 게시글은 없습니다."));
 	}
-	
-	
-	
-	
-
 }

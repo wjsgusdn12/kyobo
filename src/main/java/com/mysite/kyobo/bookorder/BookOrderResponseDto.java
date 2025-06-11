@@ -7,11 +7,8 @@ import lombok.Setter;
 @Setter
 public class BookOrderResponseDto {
 	private String bookName;
-	
 	private String thumbnail;
-	
 	private Integer count;
-	
 	private  Integer price;
 	
 	public BookOrderResponseDto(String bookName, String thumbnail, Integer count, Integer price) {
@@ -21,8 +18,5 @@ public class BookOrderResponseDto {
 		this.price = price;
 	}
 	
-	public BookOrderResponseDto() {
-		
-	}
-
+	public BookOrderResponseDto() {}
 }

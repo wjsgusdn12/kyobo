@@ -12,7 +12,6 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Author {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_author_idx")
 	@SequenceGenerator(
@@ -23,5 +22,4 @@ public class Author {
 	private int authorIdx;
 	
 	private String authorName;
-	
 }

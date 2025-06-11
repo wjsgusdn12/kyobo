@@ -67,5 +67,4 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 	       "   OR b.publisher LIKE %:kw%",
 	       nativeQuery = true)
 	int countSearchBooks(@Param("kw") String kw);
-	
 }

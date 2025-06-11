@@ -24,7 +24,6 @@ import lombok.Setter;
 @Setter
 @Table(name="book_order")
 public class BookOrder {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_order_idx")
 	@SequenceGenerator(
@@ -37,7 +36,6 @@ public class BookOrder {
 	@ManyToOne
 	private Member member;
 	
-	
 	private Integer totalPrice;
 	
 	private LocalDateTime orderDate;
@@ -46,7 +44,4 @@ public class BookOrder {
 	
 	@OneToMany(mappedBy = "bookOrder", cascade = CascadeType.ALL)
 	private List<BookOrderDetail> bookOrderDetailList = new ArrayList<>();
-	
-	
-
 }

@@ -38,13 +38,10 @@ public class BookOrderController {
 		}else {
 			//예외 처리 
 		}
-		
 		//카트의 속한 총 책의 갯수 
 		int count = this.cartService.getItemCount(principal);
-		
 		//카트의 장바구니 정보 
 		List<BookOrderResponseDto> orderListDto = this.bookOrderService.getOrderList(principal.getName());
-		
 		//카트 장바구니의 총 가격 
 		int totalPrice = this.bookOrderService.getOrderTotalPrice(principal.getName());
 		
@@ -54,7 +51,6 @@ public class BookOrderController {
 		model.addAttribute("totalPrice", totalPrice);
 		return "orderPayment";
 	}
-	
 	//주문목록 저장 
 	@PostMapping("/order/insert")
 	public String orderInsert(
@@ -62,7 +58,6 @@ public class BookOrderController {
 			@RequestParam("totalPrice") String totalPriceStr,
 			@RequestParam("request") String request,
 			Model model) {
-
 		// ,와 원 제거하고 숫자만 남기기
 		int totalPrice = Integer.parseInt(totalPriceStr.replaceAll("[^\\d]", ""));
 
@@ -80,8 +75,6 @@ public class BookOrderController {
 
 		return "order_complete";
 	}
-
-	
 	//나의 주문목록조회
 	@GetMapping("/order/index")
 	public String getOrderList(Principal principal, Model model) {
@@ -94,7 +87,6 @@ public class BookOrderController {
 		model.addAttribute("bookOrderListDto", bookOrderListDto);
 		return "index";
 	}
-	
 	//바로 구매 페이지 띄워주기 
 	@GetMapping("/order/buynow")
 	public String orderBuyNow(@RequestParam("isbn")String isbn, Principal principal, Model model ) {
@@ -108,7 +100,6 @@ public class BookOrderController {
 		model.addAttribute("member", member);
 		return "buyNow";
 	}
-	
 	//바로구매 페이지 -> 구매하기 
 	@PostMapping("/order/buynow/complete")
 	public String orderBuyNowComplete(Principal principal,
@@ -116,10 +107,8 @@ public class BookOrderController {
 			@RequestParam("request") String request,
 			Model model,
 			@RequestParam("orderIsbn") String orderIsbn) {
-		
 		// ,와 원 제거 후 숫자만 추출
 		int totalPrice = Integer.parseInt(totalPriceStr.replaceAll("[^\\d]", ""));
-		
 		//바로 구매 메서드 
 		int bookOrderIdx = this.bookOrderService.puyNow(principal.getName(), totalPrice, request, orderIsbn);
 		//저장된 주문목록 가져오기 
@@ -129,8 +118,6 @@ public class BookOrderController {
 		model.addAttribute("bookOrderList", bookOrderList);
 		model.addAttribute("member", member);
 		
-		
 		return "buyNow_complete";
 	}
-	
 }

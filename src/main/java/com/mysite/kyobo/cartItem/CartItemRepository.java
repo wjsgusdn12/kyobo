@@ -8,7 +8,4 @@ import com.mysite.kyobo.cart.Cart;
 
 public interface CartItemRepository extends JpaRepository<CartItem, Integer>{
 	List<CartItem> findByCart(Cart cart);
-
-	
-
 }

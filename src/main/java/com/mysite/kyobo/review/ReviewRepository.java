@@ -30,5 +30,4 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
 	@Query("SELECT COUNT(r) FROM Review r WHERE r.detail.isbn = :isbn")
 	long countReviewsByIsbn(@Param("isbn") String isbn);
-
 }

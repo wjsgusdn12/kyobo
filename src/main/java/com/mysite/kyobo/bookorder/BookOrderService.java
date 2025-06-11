@@ -28,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class BookOrderService {
-
 	private final BookOrderRepository bookOrderRepository;
 	private final CartService cartService;
 	private final MemberService memberService;
@@ -37,7 +36,6 @@ public class BookOrderService {
 	private final BookOrderDetailRepository bookOrderDetailRepository;
 	private final MemberRepository memberRepository;
 	private final DetailRepository detailRepository;
-
 	
 	// principal 을 통해 주문목록 cartList 띄워주기
 	public List<CartItem> getCartItem(String id) {
@@ -48,7 +46,6 @@ public class BookOrderService {
 		} else {
 			throw new IllegalArgumentException("해당된 멤버 없음");
 		}
-
 		// 멤버를 통해서 cart 를 찾아야한다
 		Optional<Cart> cartOpt = this.cartRepository.findBymember(member);
 		Cart cart = null;
@@ -57,11 +54,9 @@ public class BookOrderService {
 		} else {
 			throw new IllegalArgumentException("장바구니 없음");
 		}
-
 		// cart를 통해 cartList 를 찾아야함
 		List<CartItem> cartItems = this.cartItemRepostiroy.findByCart(cart);
 		return cartItems;
-
 	}
 
 	// principal 을 통해서 주문 목록 dto 불러오기
@@ -72,7 +67,6 @@ public class BookOrderService {
 			return new BookOrderResponseDto(detail.getBookName(), detail.getThumbnail(), item.getCount(),
 					detail.getPrice());
 		}).collect(Collectors.toList());
-
 	}
 
 	// 카트의 주문목록의 총 가격 구하기
@@ -80,7 +74,6 @@ public class BookOrderService {
 		List<CartItem> cartItems = getCartItem(id);
 		int totalPrice = cartItems.stream().mapToInt(item -> item.getCount() * item.getDetail().getPrice()).sum();
 		return totalPrice;
-
 	}
 
 	// 주문목록을 저장하는 메서드
@@ -88,6 +81,7 @@ public class BookOrderService {
 	public int orderInsert(String id, int totalPrice, String request) {
 		Optional<Member> memberOpt = this.memberService.findById(id);
 		Member member = null;
+		
 		if (memberOpt.isPresent()) {
 			member = memberOpt.get();
 		} else {
@@ -116,7 +110,6 @@ public class BookOrderService {
 			detail.setThumbnail(cartItem.getDetail().getThumbnail());
 
 			bookOrder.getBookOrderDetailList().add(detail); // 중요 !!
-
 		}
 
 		// 장바구니에 저장하고 카트 비우기
@@ -125,7 +118,6 @@ public class BookOrderService {
 		this.bookOrderRepository.save(bookOrder);
 
 		return bookOrder.getOrderIdx();
-
 	}
 
 	// 바로 구매 메서드
@@ -158,9 +150,6 @@ public class BookOrderService {
 		
 		this.bookOrderRepository.save(bookOrder);
 		return bookOrder.getOrderIdx();
-		
-		
-
 	}
 	
 	//bookOrderIdx -> 주문목록 조회 
@@ -185,7 +174,6 @@ public class BookOrderService {
 		}).collect(Collectors.toList());
 
 		return dtoList;
-
 	}
 
 	// bookOrderIdx -> 전체 주문가격
@@ -193,7 +181,6 @@ public class BookOrderService {
 		BookOrder bookOrder = this.bookOrderRepository.findByOrderIdx(bookOrder_idx)
 				.orElseThrow(() -> new IllegalArgumentException("해당 bookOrderIdx이 없습니다."));
 		return bookOrder.getTotalPrice();
-
 	}
 
 	// boodOrderIdx -> 전체 주문 권수
@@ -204,7 +191,6 @@ public class BookOrderService {
 		List<BookOrderDetail> detailList = bookOrder.getBookOrderDetailList();
 		int totalCount = detailList.stream().mapToInt(BookOrderDetail::getCount).sum();
 		return totalCount;
-
 	}
 
 	// member.id -> List<BookOrderListDto> 조회 -> 복습
@@ -235,12 +221,7 @@ public class BookOrderService {
 
 			BookOrderListDto dto = new BookOrderListDto(totalPrice, orderDate, bookName, thumbnail, totalCount);
 			dtoList.add(dto);
-
-			
 		}
-
 		return dtoList;
-
 	}
-
 }

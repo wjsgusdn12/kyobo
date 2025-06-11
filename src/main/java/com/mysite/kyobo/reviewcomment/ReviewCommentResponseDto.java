@@ -15,14 +15,8 @@ public class ReviewCommentResponseDto {
 		this.memberId = memberId;
 	}
 	
-	
-	
 	private Integer commentIdx;
-	
 	private String memberId;
-	
 	private String comment;
-	
 	private LocalDateTime createDate;
-
 }

@@ -8,6 +8,4 @@ import com.mysite.kyobo.member.Member;
 
 public interface CartRepository extends JpaRepository<Cart, Integer>{
 	public Optional<Cart> findBymember(Member member);
-
-
 }

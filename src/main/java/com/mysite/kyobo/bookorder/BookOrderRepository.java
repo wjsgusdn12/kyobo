@@ -14,7 +14,4 @@ public interface BookOrderRepository extends JpaRepository<BookOrder, Integer>{
 	@EntityGraph(attributePaths = {"bookOrderDetailList"})
 	public Optional<BookOrder> findByOrderIdx(Integer orderIdx);
 	public List<BookOrder> findBymember(Member member);
-	
-	
-
 }

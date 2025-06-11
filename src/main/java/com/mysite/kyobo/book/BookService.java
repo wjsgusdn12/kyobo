@@ -19,9 +19,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class BookService {
-
     private final SecurityFilterChain fiterChain;
-	
 	private final BookRepository bookRepository;
 	private final ReviewRepository reviewRepository;
 
@@ -111,7 +109,6 @@ public class BookService {
 	    return new PageImpl<>(books, PageRequest.of(page, pageSize), totalCount);
 	}
 
-
     public int countTotalBooks(String kw) {
         return bookRepository.countTotalBooksByKeyword(kw);
     }
@@ -123,5 +120,4 @@ public class BookService {
     public int countSearchBooks(String kw) {
     	return bookRepository.countSearchBooks(kw);
     }
-
 }

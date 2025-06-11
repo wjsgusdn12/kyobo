@@ -27,11 +27,5 @@ public class BookIndexService {
 		 return indexList.stream()
 			        .map(i -> new BookIndexResponseDto(i.getIndexName()))
 			        .collect(Collectors.toList());
-		
-		
-		
 	}
-	
-	
-
 }

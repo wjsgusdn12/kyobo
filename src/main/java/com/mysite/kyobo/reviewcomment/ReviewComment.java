@@ -20,7 +20,6 @@ import lombok.Setter;
 @Setter
 @Table(name="REVIEWCOMMENT")
 public class ReviewComment {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_reviewcomment_idx")
 	@SequenceGenerator(
@@ -29,15 +28,10 @@ public class ReviewComment {
 	       allocationSize = 1
 	   )
 	private Integer commentIdx;
-	
 	@ManyToOne
 	private Review review;
-	
 	@ManyToOne
 	private Member member;
-	
 	private String content;
-	
 	private LocalDateTime createDate;
-
 }

@@ -56,9 +56,7 @@ public class CartService {
 	        newItem.setDetail(detail);
 	        cart.getItems().add(newItem);
 	    }
-		
 		return this.cartRepository.save(cart);
-		
 	}
 	
 	//사용자를 통해 장바구니 갯수 확인 
@@ -84,9 +82,5 @@ public class CartService {
 	            .sum();
 
 	    return totalCount;
-		
-	
-		
 	}
-
 }

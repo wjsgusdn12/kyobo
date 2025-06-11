@@ -21,9 +21,4 @@ public interface DetailRepository extends JpaRepository<Detail, Integer>{
 		       "LEFT JOIN FETCH r.commentList " +
 		       "WHERE d.isbn = :postIsbn")
 	Optional<Detail> findWithReviewsAndCommentsByIsbn(@Param("postIsbn") String postIsbn);
-	
-	
-	
-	
-
 }

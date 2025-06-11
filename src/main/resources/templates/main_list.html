@@ -211,7 +211,6 @@
 			    color: #3b58ab;
 			    transition: color 0.3s ease;
 			}
-
 			.book_add_cart_button:hover {
 			    background-color: #555555;
 			    color: #ffffff;
@@ -219,7 +218,6 @@
 			    transform: translateY(-2px);
 			    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 			}
-
 			.book_buy_button:hover {
 			    background-color: #1e3a8a;
 			    color: white;
@@ -227,20 +225,17 @@
 			    transform: translateY(-2px);
 			    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 			}
-
 			.main_book_image:hover {
 			    cursor: pointer;
 			    filter: brightness(90%);
 			    transform: scale(1.05);
 			    transition: filter 0.3s ease, transform 0.3s ease;
 			}
-
 			.pagination a:hover:not(.off):not(.active) {
 			    background-color: #3b58ab;
 			    color: white;
 			    transition: background-color 0.3s ease, color 0.3s ease;
 			}
-
 			.pagination a.active {
 			    box-shadow: 0 0 8px #3b58ab;
 			    transition: box-shadow 0.3s ease;
@@ -282,18 +277,15 @@
                     </div>
                 </div>
             </div>
-
 			<div class="pagination">
 			    <a th:href="@{|/?page=${paging.number - 1}|}" 
 			       th:classappend="${paging.first} ? 'off' : ''" class="previous">
 			        이전
 			    </a>
-
 				<span th:each="i : ${pageNumbers}">
 				    <a th:href="@{|/?page=${i}|}" th:text="${i + 1}" 
 				       th:classappend="${i == paging.number} ? 'active' : ''"></a>
 				</span>
-
 			    <a th:href="@{|/?page=${paging.number + 1}|}" 
 			       th:classappend="${paging.last} ? 'off' : ''" class="next">
 			        다음

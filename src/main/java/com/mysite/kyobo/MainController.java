@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class MainController {
-	
 	private final BookService bookService;
 	private final CartService cartService;
 
@@ -77,5 +76,4 @@ public class MainController {
 	public String myPageLock() {
 		return "my_page_lock";
 	}
-	
 }

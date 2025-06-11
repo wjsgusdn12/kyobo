@@ -24,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
-
 	private final MemberService memberService;
 	private final PasswordEncoder passwordEncoder;
 	
@@ -161,5 +160,4 @@ public class MemberController {
 		
 		return ResponseEntity.ok("비밀번호가 성공적으로 변경되었습니다.");
 	}
-	
 }

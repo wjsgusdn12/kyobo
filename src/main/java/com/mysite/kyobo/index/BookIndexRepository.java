@@ -11,8 +11,4 @@ import com.mysite.kyobo.detail.Detail;
 public interface BookIndexRepository extends JpaRepository<BookIndex, Integer>{
 	@Query("SELECT b FROM BookIndex b WHERE b.detail = :detail ORDER BY b.indexIdx ASC")
 	List<BookIndex> findByDetail(@Param("detail") Detail detail);
-
-	
-	
-
 }

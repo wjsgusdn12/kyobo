@@ -6,7 +6,6 @@
       margin: 0;
       padding: 0;
     }
-
     body, html, .main_area {
       width: 100%;
       height: 100%;
@@ -16,7 +15,6 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-
     .main_area {
       display: flex;
       justify-content: center;
@@ -24,14 +22,12 @@
       padding: 40px 0;
       min-height: 100vh;
     }
-
     .book_list_area {
       width: 920px;
       display: flex;
       flex-direction: column;
       gap: 25px;
     }
-
     .book_list_area > h1 {
       font-size: 28px;
       font-weight: 700;
@@ -39,11 +35,9 @@
       margin-bottom: 10px;
       letter-spacing: -0.02em;
     }
-
     .book_list_area > h1 span {
       color: #3b82f6;
     }
-
     .main_book_div {
       display: flex;
       background: white;
@@ -59,14 +53,12 @@
     .main_book_div:hover {
       box-shadow: 0 12px 30px rgb(59 88 171 / 0.25);
     }
-
     .main_book_info {
       display: flex;
       gap: 24px;
       align-items: center;
       flex: 1 1 auto;
     }
-
     .main_book_image {
       width: 144px;
       height: 208px;
@@ -81,7 +73,6 @@
       transform: scale(1.08) rotate(1deg);
       box-shadow: 0 16px 36px rgb(59 88 171 / 0.35);
     }
-
     .main_book_info_text {
       display: flex;
       flex-direction: column;
@@ -90,7 +81,6 @@
       width: 560px;
       user-select: none;
     }
-
     .main_book_number {
       background-color: #3b82f6;
       width: 28px;
@@ -107,7 +97,6 @@
       margin-bottom: 6px;
       user-select: none;
     }
-
     .main_book_title {
       font-weight: 700;
       font-size: 20px;
@@ -121,21 +110,18 @@
       color: #2563eb;
       text-decoration: underline;
     }
-
     .main_book_author {
       color: #64748b;
       font-size: 15px;
       font-weight: 500;
       letter-spacing: 0.01em;
     }
-
     .main_book_price {
       font-weight: 700;
       font-size: 18px;
       color: #1e40af;
       user-select: none;
     }
-
     .main_book_desc {
       color: #64748b;
       font-size: 14px;
@@ -149,7 +135,6 @@
       letter-spacing: 0.01em;
       user-select: none;
     }
-
     .main_book_rating {
       display: flex;
       align-items: center;
@@ -170,7 +155,6 @@
       font-size: 14px;
       user-select: none;
     }
-
     .main_book_button_area {
       display: flex;
       flex-direction: column;
@@ -178,7 +162,6 @@
       width: 120px;
       flex-shrink: 0;
     }
-
     .book_add_cart_button,
     .book_buy_button {
       font-size: 15px;
@@ -191,7 +174,6 @@
       transition: all 0.25s ease;
       box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
     }
-
     .book_add_cart_button {
       background: linear-gradient(135deg, #6b7280, #374151);
       color: #f9fafb;
@@ -214,7 +196,6 @@
       box-shadow: none;
       color: #d1d5db;
     }
-
     .book_buy_button {
       background: linear-gradient(135deg, #3b82f6, #2563eb);
       color: white;
@@ -236,7 +217,6 @@
       pointer-events: none;
       box-shadow: none;
     }
-
     .pagination {
       display: flex;
       justify-content: center;
@@ -245,7 +225,6 @@
       gap: 14px;
       user-select: none;
     }
-
     .pagination a {
       padding: 10px 16px;
       background-color: #e2e8f0;
@@ -258,13 +237,11 @@
       box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
       transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     }
-
     .pagination a:hover:not(.off):not(.active) {
       background-color: #3b82f6;
       color: white;
       box-shadow: 0 0 10px #3b82f6;
     }
-
     .pagination a.active {
       background-color: #2563eb;
       color: white;
@@ -272,7 +249,6 @@
       pointer-events: none;
       cursor: default;
     }
-
     .pagination a.off {
       background-color: #cbd5e1;
       color: #94a3b8;
@@ -281,120 +257,114 @@
       cursor: not-allowed;
       box-shadow: none;
     }
-
     .main_book_isbn {
       display: none;
     }
   </style>
-
   <div class="book_list_area">
 	<h1>검색 결과 : <span th:text="${searchKeyword}">키워드</span>,
 	  <span th:text="${totalElements}"></span>건
 	</h1>
-
     <div th:if="${paging.content.size() == 0}">
       <p style="color:#64748b; font-size:16px; text-align:center; margin-top: 40px;">검색 결과가 없습니다.</p>
     </div>
-
-    <div th:each="book : ${paging.content}">
-      <div class="main_book_div" tabindex="0" aria-label="도서 상세 정보">
-        <div class="main_book_info">
-          <img class="main_book_image" th:src="@{${book.thumbnail}}" fetchpriority="high" loading="eager" alt="책 표지 이미지"
-            width="144" height="208" decoding="async" />
-          <div class="main_book_info_text">
-            <div class="main_book_isbn" th:text="${book.isbn}"></div>
-            <div class="main_book_number" th:text="${book.bookIdx}"></div>
-            <div class="main_book_title" th:text="${book.bookName}"></div>
-            <div class="main_book_author"
-              th:text="${book.author.authorName} + ' · ' + ${book.publisher} + ' · ' + ${#temporals.format(book.publicationDate, 'yyyy.MM.dd')}">
-            </div>
-            <div class="main_book_price" th:text="${book.price} + '원'"></div>
-            <div class="main_book_desc" th:text="${book.introduction}"></div>
-            <div class="main_book_rating">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#22c55e" viewBox="0 0 17 16"
-                stroke="none" style="margin-top: 2px;">
-                <g clip-path="url(#ico_clover_svg__a)">
-                  <path fill="current"
-                    d="M8.489 13.546V7.817h3.139a2.4 2.4 0 0 1 2.4 2.403v.092a2.403 2.403 0 0 1-2.4 2.403h-.74a2.4 2.4 0 0 1-1.476-.52v1.343a.462.462 0 0 1-.923 0zm-4.062-.822a2.397 2.397 0 0 1-2.4-2.403v-.092a2.405 2.405 0 0 1 2.4-2.402h3.139v2.494a2.404 2.404 0 0 1-2.4 2.403zm4.062-5.827V4.402A2.403 2.403 0 0 1 10.889 2h.739a2.4 2.4 0 0 1 2.4 2.402v.093a2.403 2.403 0 0 1-2.4 2.402zm-4.062 0a2.4 2.4 0 0 1-1.697-.703 2.4 2.4 0 0 1-.703-1.7v-.092A2.403 2.403 0 0 1 4.427 2h.74a2.4 2.4 0 0 1 2.399 2.402v2.495z">
-                  </path>
-                </g>
-              </svg>
-			  <span class="main_book_rating_text" th:text="${#numbers.formatDecimal(book.avgScore != null ? book.avgScore : 0, 1, 1)}"></span>
-              <span class="main_book_rating_size" th:text="'(' + ${book.reviewCount} + '개의 리뷰)'"></span>
-            </div>
-          </div>
-        </div>
-        <div class="main_book_button_area">
-          <input type="button" class="book_add_cart_button" value="장바구니" />
-		  <input sec:authorize="isAnonymous()" type="button" class="book_buy_button" value="구매하기" th:onclick="|alert('로그인 후 이용해주세요.'); location.href='@{/login}'|"/>
-          <input sec:authorize="isAuthenticated()" type="button" class="book_buy_button real" value="구매하기"/>
-        </div>
-      </div>
-    </div>
-
+	<div th:each="book : ${paging.content}">
+		<div class="main_book_div" tabindex="0" aria-label="도서 상세 정보">
+			<div class="main_book_info">
+				<img class="main_book_image" th:src="@{${book.thumbnail}}" fetchpriority="high" loading="eager"
+					alt="책 표지 이미지" width="144" height="208" decoding="async" />
+				<div class="main_book_info_text">
+					<div class="main_book_isbn" th:text="${book.isbn}"></div>
+					<div class="main_book_number" th:text="${book.bookIdx}"></div>
+					<div class="main_book_title" th:text="${book.bookName}"></div>
+					<div class="main_book_author"
+						th:text="${book.author.authorName} + ' · ' + ${book.publisher} + ' · ' + ${#temporals.format(book.publicationDate, 'yyyy.MM.dd')}">
+					</div>
+					<div class="main_book_price" th:text="${book.price} + '원'"></div>
+					<div class="main_book_desc" th:text="${book.introduction}"></div>
+					<div class="main_book_rating">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#22c55e" viewBox="0 0 17 16"
+							stroke="none" style="margin-top: 2px;">
+							<g clip-path="url(#ico_clover_svg__a)">
+								<path fill="current"
+									d="M8.489 13.546V7.817h3.139a2.4 2.4 0 0 1 2.4 2.403v.092a2.403 2.403 0 0 1-2.4 2.403h-.74a2.4 2.4 0 0 1-1.476-.52v1.343a.462.462 0 0 1-.923 0zm-4.062-.822a2.397 2.397 0 0 1-2.4-2.403v-.092a2.405 2.405 0 0 1 2.4-2.402h3.139v2.494a2.404 2.404 0 0 1-2.4 2.403zm4.062-5.827V4.402A2.403 2.403 0 0 1 10.889 2h.739a2.4 2.4 0 0 1 2.4 2.402v.093a2.403 2.403 0 0 1-2.4 2.402zm-4.062 0a2.4 2.4 0 0 1-1.697-.703 2.4 2.4 0 0 1-.703-1.7v-.092A2.403 2.403 0 0 1 4.427 2h.74a2.4 2.4 0 0 1 2.399 2.402v2.495z">
+								</path>
+							</g>
+						</svg>
+						<span class="main_book_rating_text"
+							th:text="${#numbers.formatDecimal(book.avgScore != null ? book.avgScore : 0, 1, 1)}"></span>
+						<span class="main_book_rating_size" th:text="'(' + ${book.reviewCount} + '개의 리뷰)'"></span>
+					</div>
+				</div>
+			</div>
+			<div class="main_book_button_area">
+				<input type="button" class="book_add_cart_button" value="장바구니" />
+				<input sec:authorize="isAnonymous()" type="button" class="book_buy_button" value="구매하기"
+					th:onclick="|alert('로그인 후 이용해주세요.'); location.href='@{/login}'|" />
+				<input sec:authorize="isAuthenticated()" type="button" class="book_buy_button real" value="구매하기" />
+			</div>
+		</div>
+	</div>
 	<div class="pagination" th:if="${paging.totalPages > 1}">
 	    <a th:href="@{/search_result(kw=${searchKeyword}, page=${paging.number > 0 ? paging.number : 1})}"
 	       th:classappend="${paging.first} ? 'off' : ''" class="previous" aria-label="이전 페이지">이전</a>
-
 	    <span th:each="i : ${pageNumbers}">
 	      <a th:href="@{/search_result(kw=${searchKeyword}, page=${i})}"
 	         th:text="${i}" role="button"
 	         th:classappend="${i == paging.number + 1} ? 'active' : ''"></a>
 	    </span>
-
 	    <a th:href="@{/search_result(kw=${searchKeyword}, page=${paging.number + 2 <= paging.totalPages ? paging.number + 2 : paging.totalPages})}"
 	       th:classappend="${paging.last} ? 'off' : ''" class="next" aria-label="다음 페이지">다음</a>
 	</div>
   </div>
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const bookPrices = document.querySelectorAll(".main_book_price");
+			const bookPrices = document.querySelectorAll(".main_book_price");
 
-      bookPrices.forEach(function (priceElement) {
-        let price = priceElement.textContent.replace("원", "").trim();
-        if (price) {
-          let formattedPrice = formatPrice(price);
-          priceElement.textContent = formattedPrice + "원";
-        }
-      });
-
-      function formatPrice(price) {
-        return Number(price).toLocaleString("ko-KR");
-      }
-
-      document.addEventListener("click", function (e) {
-        if (e.target.classList.contains("book_add_cart_button")) {
-          let bookDiv = e.target.closest(".main_book_div");
-          let isbn = bookDiv.querySelector(".main_book_isbn")?.textContent.trim();
-		  $.ajax({
-				method: 'post',
-				data: {isbn: isbn},
-				url: '/kyobo/cart/insert',
-				success: function () {
-					location.href="/kyobo/orderPayment";
-				},
-				error: function (r, s, e) {
-					alert("로그인 후 이용해주세요.");
-					location.href="/kyobo/login";
+			bookPrices.forEach(function (priceElement) {
+				let price = priceElement.textContent.replace("원", "").trim();
+				if (price) {
+					let formattedPrice = formatPrice(price);
+					priceElement.textContent = formattedPrice + "원";
 				}
-			})
-        } else if (e.target.classList.contains("book_buy_button") && 
+			});
+
+			function formatPrice(price) {
+				return Number(price).toLocaleString("ko-KR");
+			}
+
+			document.addEventListener("click", function (e) {
+				if (e.target.classList.contains("book_add_cart_button")) {
+					let bookDiv = e.target.closest(".main_book_div");
+					let isbn = bookDiv.querySelector(".main_book_isbn")?.textContent.trim();
+					$.ajax({
+						method: 'post',
+						data: {isbn: isbn},
+						url: '/kyobo/cart/insert',
+						success: function () {
+							location.href = "/kyobo/orderPayment";
+						},
+						error: function (r, s, e) {
+							alert("로그인 후 이용해주세요.");
+							location.href = "/kyobo/login";
+						}
+					})
+				} else if (e.target.classList.contains("book_buy_button") &&
 					e.target.classList.contains("real")) {
-          let bookDiv = e.target.closest(".main_book_div");
-          let isbn = bookDiv.querySelector(".main_book_isbn")?.textContent.trim();
-		  location.href="/kyobo/order/buynow?isbn="+isbn;
-          alert("구매하기 : " + isbn);
-        } else if (
-          e.target.classList.contains("main_book_image") ||
-          e.target.classList.contains("main_book_title")
-        ) {
-          let bookDiv = e.target.closest(".main_book_div");
-          let isbn = bookDiv.querySelector(".main_book_isbn")?.textContent.trim();
-		  location.href="/kyobo/detail/"+isbn;
-        }
-      });
-    });
+					let bookDiv = e.target.closest(".main_book_div");
+					let isbn = bookDiv.querySelector(".main_book_isbn")?.textContent.trim();
+					location.href = "/kyobo/order/buynow?isbn=" + isbn;
+					alert("구매하기 : " + isbn);
+				} else if (
+					e.target.classList.contains("main_book_image") ||
+					e.target.classList.contains("main_book_title")
+				) {
+					let bookDiv = e.target.closest(".main_book_div");
+					let isbn = bookDiv.querySelector(".main_book_isbn")?.textContent.trim();
+					location.href = "/kyobo/detail/" + isbn;
+				}
+			});
+		});
   </script>
 </div>
 </html>

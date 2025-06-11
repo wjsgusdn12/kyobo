@@ -18,7 +18,6 @@ import lombok.Setter;
 @Setter
 @Table(name="book_order_detail")
 public class BookOrderDetail {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_book_order_detail_idx")
 	@SequenceGenerator(
@@ -36,5 +35,4 @@ public class BookOrderDetail {
     private int count;
     private int price;
     private String thumbnail; 
-
 }

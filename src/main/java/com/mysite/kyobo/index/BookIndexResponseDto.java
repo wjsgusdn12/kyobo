@@ -14,6 +14,4 @@ public class BookIndexResponseDto {
 	}
 	
 	private String indexName;
-	
-
 }

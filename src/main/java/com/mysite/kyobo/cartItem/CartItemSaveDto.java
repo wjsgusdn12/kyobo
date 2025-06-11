@@ -10,5 +10,4 @@ import lombok.Setter;
 public class CartItemSaveDto {
 	private Detail detail;
 	private Integer count;
-
 }

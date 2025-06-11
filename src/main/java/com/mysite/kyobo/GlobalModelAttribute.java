@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 @ControllerAdvice
 @RequiredArgsConstructor
 public class GlobalModelAttribute {
-
 	private final CartService cartService;
 
 	@ModelAttribute

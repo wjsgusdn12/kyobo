@@ -29,7 +29,6 @@ import lombok.Setter;
 @Setter
 @Table(name="REVIEW")
 public class Review {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_review_idx")
 	@SequenceGenerator(
@@ -56,9 +55,4 @@ public class Review {
 	@OneToMany(mappedBy="review" , cascade=CascadeType.REMOVE, fetch = FetchType.LAZY)
 	@OrderBy("createDate DESC")
 	private Set<ReviewComment> commentList;
-	
-	
-	
-	
-
 }

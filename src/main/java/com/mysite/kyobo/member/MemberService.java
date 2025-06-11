@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class MemberService {
-
 	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;
 	
@@ -96,5 +95,4 @@ public class MemberService {
 	    System.out.println("Searching for member with id: " + id + ", name: " + name + ", phone: " + phone);
 	    return memberRepository.findByIdAndNameAndPhone(id, name, phone);
 	}
-	
 }

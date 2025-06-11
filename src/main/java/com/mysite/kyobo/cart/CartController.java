@@ -25,7 +25,6 @@ public class CartController {
 	public void inserCart(@RequestParam("isbn")String isbn, Principal principal) {
 		 System.out.println("principal.getName() = " + principal.getName());
 		this.cartService.insertCart(principal.getName(), isbn);
-		
 	}
 	
 	//특정 사용자의 카트의 수량 체크 
@@ -34,7 +33,4 @@ public class CartController {
 	public Integer checkCount(Principal principal) {
 		return this.cartService.getItemCount(principal);
 	}
-	
-	
-
 }
