@@ -1,0 +1,1473 @@
+<html layout:decorate="~{layout}">
+<th:block layout:fragment="css">
+	<style>
+		.nav {
+			width: 100%;
+			height: 122px;
+			background-color: azure;
+		}
+
+		/* 메인 책정보 */
+		.header_content_inner {
+			display: flex;
+			width: 1200px;
+			height: 754px;
+			margin: 89px auto 0;
+		}
+
+		.header_left_inner {
+			width: 330px;
+			height: 50px;
+			margin: 0 auto;
+			text-align: center;
+
+		}
+
+		.header_left_inner>span {
+			font-size: 15px;
+			font-weight: 500;
+			line-height: 23px;
+		}
+
+		.header_left_inner>span:nth-child(1) {
+			margin-bottom: 10px
+		}
+
+		.header_left_inner>span:nth-child(3) {
+			color: #767676;
+		}
+
+		.header_center_inner {
+			width: 380px;
+			height: 657px;
+			margin-left: 80px;
+		}
+
+		.header_center_title {
+			font-weight: 700;
+			font-size: 28px;
+			line-height: 42px;
+			text-align: center;
+		}
+
+		.header_center_category {
+			color: #595959;
+			font-size: 16px;
+			font-weight: 500;
+			line-height: 24px;
+			text-align: center;
+		}
+
+		.header_center_type_item {
+			width: 126px;
+			height: 50px;
+			border-radius: 20px;
+			background-color: white;
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+			box-sizing: border-box;
+			padding-left: 36px;
+			padding-top: 4px;
+			margin: 46px 136px 46px 103px;
+
+		}
+
+		.header_center_img {
+			width: 380px;
+			height: 550px;
+			margin-top: 67px;
+		}
+
+		.header_center_img>img {
+			width: 100%;
+			height: auto;
+
+		}
+
+		.header_center_item_inner {
+			font-size: 14px;
+			font-weight: 600;
+			color: #5055b1;
+			line-height: 22px;
+
+		}
+
+		.header_right_inner {
+			width: 330px;
+			margin: auto;
+		}
+
+		.header_right_price {
+			border-bottom: 1px solid #d5d1d1;
+			width: 333px;
+			height: 55px;
+			display: flex;
+		}
+
+		.header_right_price>div:nth-child(1) {
+			font-size: 15px;
+			font-weight: 700;
+		}
+
+		.header_right_price>div:nth-child(2) {
+			margin-left: 115px;
+			font-size: 25px;
+			font-weight: 600;
+
+		}
+
+		.header_right_delivery {
+			margin-top: 23px;
+			border-bottom: 1px solid #d5d1d1;
+			display: flex;
+			width: 330px;
+			height: 80px;
+		}
+
+		.header_right_delivery>div:nth-child(1) {
+			font-size: 15px;
+			font-weight: 700;
+
+
+		}
+
+		.delivery_detail {
+			margin-left: 92px;
+		}
+
+		.header_Btn {
+			display: flex;
+			justify-content: flex-end;
+			gap: 14px;
+			margin-top: 25px;
+		}
+
+		.header_Btn>div {
+		    width: 120px;
+		    height: 50px;
+		    border-radius: 14px;
+		    box-sizing: border-box;
+		    border: 1px solid #5055b1;
+		    font-size: 16px;
+		    font-weight: 700;
+		    cursor: pointer;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		}
+
+		.cartBtn {
+			color: #474c98;
+
+		}
+
+		.orderBtn {
+			color: white;
+			background-color: #474c98;
+
+		}
+
+		/* 메인 책정보 */
+		/*탭 리스트*/
+		.tab_list {
+			width: 100%;
+			height: 71px;
+			display: flex;
+			border-bottom: 1px solid #d5d1d1;
+			justify-content: space-evenly;
+		}
+
+		.tab_list>div {
+			font-size: 20px;
+			color: #807d7d;
+
+		}
+
+		/*탭 리스트*/
+		/*작가 설명*/
+		.main_book_inform {
+			width: 814px;
+			margin: auto;
+		}
+
+		.author_inform {
+			margin-top: 25px;
+		}
+
+		.author_inform>div:nth-child(1) {
+			font-size: 25px;
+			padding-bottom: 25px;
+			font-weight: 600;
+		}
+
+		.author_inform_detail {
+			width: 814px;
+			box-sizing: border-box;
+			padding: 36px;
+			border-radius: 20px;
+			background-color: #f7f7f7;
+		}
+
+		.author_inform_name {
+			margin-bottom: 15px;
+		}
+
+		.author_inform_name>span:nth-child(2) {
+			font-weight: 700;
+		}
+
+		/*작가 설명*/
+		/*목차 */
+		.book_index {
+			margin: 70px 0 0;
+			border-bottom: 1px solid #d5d1d1;
+			box-sizing: border-box;
+			padding: 0 0 50px;
+
+		}
+
+		.book_index>div:nth-child(1) {
+			font-size: 25px;
+			font-weight: 700;
+			margin-bottom: 20px;
+
+		}
+
+		/*목차*/
+		/*출판사 서평*/
+		.book_review {
+			margin: 70px 0 0;
+			border-bottom: 1px solid #d5d1d1;
+			box-sizing: border-box;
+			padding: 0 0 50px;
+
+		}
+
+		.book_review>div:nth-child(1) {
+			font-size: 25px;
+			font-weight: 700;
+			margin-bottom: 20px;
+
+		}
+
+		/*출판사 서평*/
+		/*기본정보 */
+		.basic_inform {
+			margin: 70px 0 0;
+			border-bottom: 1px solid #d5d1d1;
+			box-sizing: border-box;
+			padding: 0 0 50px;
+
+		}
+
+		.basic_inform_title {
+			font-size: 25px;
+			font-weight: 700;
+			margin-bottom: 20px;
+
+		}
+
+		.basic_inform>table {
+			margin-top: 30px;
+		}
+
+		.basic_inform_one {
+			font-weight: 600;
+		}
+
+		.basic_inform_two {
+			padding-left: 50px;
+		}
+
+		/*기본정보 */
+		/*리뷰*/
+		.review_section {
+			width: 814px;
+			margin: 50px auto;
+
+		}
+
+		.review_section_header {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.total_review {
+			font-size: 25px;
+			font-weight: 700;
+
+		}
+
+		.review_createBtn {
+			width: 95px;
+			height: 38px;
+			background: #5055b1;
+			border: none;
+			border-radius: 15px;
+			color: white;
+			cursor: pointer;
+
+		}
+
+		.review_section_content_lists {
+			margin: 50px 0 0;
+			border-bottom: 1px solid #d5d1d1;
+			padding-bottom: 10px;
+		}
+
+		.review_section_content_lists>span {
+			font-weight: 700;
+		}
+
+		/*리뷰 작성 버튼*/
+		.review_createBtn_parent {
+			position: relative;
+		}
+
+		.review_loginCheck {
+			width: 336px;
+			height: 187px;
+			border-radius: 30px;
+			box-sizing: border-box;
+			padding: 20px;
+			box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+			z-index: 100;
+			position: absolute;
+			background: white;
+			top: 53px;
+			right: 3px;
+			display: none;
+
+		}
+
+		.review_loginpost_1 {
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		.review_loginpost_2 {
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		.review_loginCheckBtnBox {
+			height: 73px;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: flex-end;
+		}
+
+		.review_loginCheckBtnBox>button {
+			width: 110px;
+			height: 40px;
+			border-radius: 10px;
+			color: white;
+			border: none;
+		}
+
+		.login_cancel {
+			background: #767676;
+			cursor: pointer;
+		}
+
+		.login_check {
+			background: #5055b1;
+			cursor: pointer;
+		}
+
+
+
+
+
+
+		/*리뷰*/
+		/*리뷰 박스*/
+		.review_section_content_item {
+			padding: 20px 0;
+			border-bottom: 1px solid #d5d1d1;
+		}
+
+		.review_content_item_header {
+			display: flex;
+			gap: 10px;
+			margin: 0 17px 0;
+
+		}
+
+		.review_content_item_header>div {
+			font-size: 14px;
+		}
+
+		.paper_book {
+			width: 60px;
+			height: 22px;
+			border-radius: 30px;
+			background: rgba(23, 23, 237, 0.1);
+			color: #767676;
+			box-sizing: border-box;
+			text-align: center;
+
+		}
+
+		.buyer {
+			width: 60px;
+			height: 22px;
+			border-radius: 30px;
+			box-sizing: border-box;
+			text-align: center;
+			background-color: white;
+			color: black;
+			border: 1px solid;
+
+		}
+
+		.review_content_item_conent {
+			font-size: 14px;
+			width: 800px;
+			box-sizing: border-box;
+			padding: 17px;
+
+		}
+
+		.icon {
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_reply@2x.png) no-repeat center center / contain;
+		}
+
+		.review_content_item_footer {
+			margin-left: 737px;
+			cursor: pointer;
+
+		}
+
+		.review_content_item_footer>span {
+			font-size: 14px;
+
+		}
+
+		/*댓글 보기*/
+		.review_comment {
+			margin: 30px 0;
+			display: none;
+		}
+
+		.review_input_wrap {
+			border: 1px solid #d5d1d1;
+			border-radius: 15px;
+			box-sizing: border-box;
+			padding: 15px;
+		}
+
+		.review_input_wrap>textarea {
+			border: none;
+			width: 772px;
+			height: 88px;
+		}
+
+		.review_commentBtn_wrap {
+			margin-left: 647px;
+		}
+
+		.review_commentBtn_wrap>button {
+			width: 41px;
+			height: 30px;
+			border-radius: 8px;
+			border: none;
+			color: white;
+
+
+		}
+
+		.review_commentCancle {
+			background-color: #767676;
+		}
+
+		.review_commentRegist {
+			background-color: #5055b1;
+		}
+
+		/*댓글 item*/
+		.review_comment_item {
+			background: #f7f7f7;
+			box-sizing: border-box;
+			padding: 25px;
+			border-radius: 15px;
+			margin-bottom: 10px;
+		}
+
+		.review_comment_wrap {
+			margin: 10px 0;
+		}
+
+		.review_comment_item_header>span {
+			padding-right: 10px;
+			font-size: 14px;
+			color: #767676;
+
+		}
+
+		.review_comment_item_content {
+			margin: 10px 0;
+			font-size: 14px;
+		}
+
+		/*댓글 item*/
+
+
+
+
+
+
+
+
+
+		/*댓글 보기*/
+		/*리뷰 박스*/
+		/*페이지 네이션*/
+		.pagination {
+			display: flex;
+			width: 326px;
+			margin: 10px auto;
+			justify-content: space-between;
+		}
+
+		.btn_prev {
+			background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_pagination_prev@2x.png) center no-repeat;
+			width: 24px;
+			height: 24px;
+			border: none;
+		}
+
+		.btn_post {
+			background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_pagination_next@2x.png) center no-repeat;
+			width: 24px;
+			height: 24px;
+			border: none;
+		}
+
+		.pagination_lists {
+			display: flex;
+			gap: 15px;
+		}
+
+		.pagination_lists>a {
+			font-weight: 600;
+			text-decoration: none;
+		}
+
+		.active {
+			background-color: #595959;
+			color: white;
+			/* 글자색 반전 */
+			border-radius: 50%;
+			/* 완전한 원형 */
+			display: inline-block;
+			/* padding + border-radius 적용을 위해 필요 */
+			width: 25px;
+			height: 25px;
+			box-sizing: border-box;
+			text-align: center;
+			padding: 4px;
+		}
+
+		/*페이지 네이션*/
+
+		/*책 제목 */
+		.book_summation {
+			margin: 45px 0;
+			border-bottom: 1px solid #d5d1d1;
+			box-sizing: border-box;
+			padding: 0 0 50px;
+
+		}
+
+		.book_summation_title {
+			font-size: 25px;
+			font-weight: 700;
+			margin-bottom: 20px;
+		}
+
+		.aladinlogo {
+			width: 132px;
+			height: auto;
+			margin-top: 14px;
+			cursor: pointer;
+		}
+
+		/*책 제목 */
+		/*리뷰 작성*/
+		.start {
+			width: 22px;
+			height: 22px;
+			background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_klover_lg_none@2x.png);
+			display: inline-block;
+			background-size: 22px 22px;
+		}
+
+		.start.fill {
+			background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_klover@2x.png);
+			width: 22px;
+			height: 22px;
+			background-size: 22px 22px;
+			display: inline-block;
+		}
+
+		.review_writeForm {
+			display: none;
+			/*display: flex;*/
+			justify-content: space-evenly;
+			align-items: flex-end;
+			padding: 20px;
+			box-sizing: border-box;
+			background: white;
+			border: 1px solid #ccc;
+			border-radius: 16px;
+			width: 542px;
+			position: absolute;
+			z-index: 200;
+			right: -4px;
+			top: 51px;
+		}
+
+		.review_writeForm_header {
+			width: 482px;
+			height: 125px;
+			display: flex;
+			gap: 20px;
+			border: 1px solid #ccc;
+			border-radius: 16px;
+			box-sizing: border-box;
+			padding: 16px;
+		}
+
+		.review_writeForm_bookImg>img {
+			width: 62px;
+			height: auto;
+
+		}
+
+		.review_writeForm_header_title {
+			font-weight: 700;
+			font-size: 14px;
+		}
+
+		.review_writeForm_scoreWrap {
+			margin-top: 20px;
+		}
+
+		.select_score {
+			margin-left: 16px;
+			color: #3c9a17;
+			font-size: 25px;
+			font-weight: 700;
+		}
+
+		.review_writeDiv {
+			width: 482px;
+			height: 174px;
+			margin-top: 24px;
+		}
+
+		.review_writeDiv>span {
+			font-size: 14px;
+			font-weight: 700;
+		}
+
+		.review_writeDiv>textarea {
+			width: 480px;
+			height: 126px;
+			border-radius: 10px;
+			border: 1px solid #ccc;
+			margin-top: 10px;
+			color: #929090;
+			box-sizing: border-box;
+			padding: 14px 0 0 14px;
+		}
+
+
+		.review_registerBtn {
+			width: 140px;
+			height: 40px;
+			border-radius: 16px;
+			border: none;
+			background: #5055b1;
+			color: white;
+			margin-left: 176px;
+			cursor: pointer;
+		}
+
+		/*리뷰 작성*/
+		.review_comment_updateBtn {
+			cursor: pointer;
+		}
+
+		.review_comment_deleteBtn {
+			cursor: pointer;
+		}
+
+		/*댓글 수정하는 div */
+		.review_comment_update_wrap {
+			margin-top: 17px;
+			display: none;
+			width: 735px;
+			height: 140px;
+			border: 1px solid #ccc;
+			background: white;
+			border-radius: 10px;
+			box-sizing: border-box;
+			padding: 10px;
+
+		}
+
+		.review_comment_update {
+			width: 720px;
+			height: 70px;
+			border: none;
+
+		}
+
+		.review_modifyBtn_wrap {
+			display: flex;
+			justify-content: flex-end;
+			gap: 10px;
+		}
+
+		.review_modify_deleteBtn {
+			width: 41px;
+			height: 30px;
+			border-radius: 8px;
+			border: none;
+			color: white;
+			background-color: #767676;
+			cursor: pointer;
+			text-align: center;
+		}
+
+		.review_modify_registBtn {
+			width: 41px;
+			height: 30px;
+			border-radius: 8px;
+			border: none;
+			color: white;
+			background-color: #5055b1;
+			cursor: pointer;
+			text-align: center;
+		}
+
+		/*댓글 수정하는 div */
+		/*페이징 처리*/
+		.paging_ul {
+			list-style: none;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			gap: 6px;
+			margin-top: 20px;
+		}
+
+		/* 각 페이지 li 스타일 */
+		.paging_ul li {
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			padding: 6px 12px;
+			background-color: #f8f9fa;
+			transition: all 0.2s ease-in-out;
+			min-width: 32px;
+			/* ✅ 고정 너비 */
+		}
+
+		/* a 링크 기본 스타일 제거 */
+		.paging_ul li a {
+			text-decoration: none;
+			color: #333;
+			font-size: 14px;
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+
+		/* 현재 페이지 (active) */
+		.paging_ul li.activePaing {
+			background-color: #5055b1;
+			border-color: #5055b1;
+		}
+
+		.paging_ul li.activePaing a {
+			color: white;
+			font-weight: bold;
+		}
+
+		/* 비활성화 상태 */
+		.paging_ul li.disabled {
+			opacity: 0.5;
+			pointer-events: none;
+			cursor: default;
+		}
+
+		/*페이징 처리*/
+		/*장바구니 */
+		.header_Btn_parent {
+			position: relative;
+		}
+
+		.move_shopping_cart {
+			display: none;
+			width: 360px;
+			height: 199px;
+			box-sizing: border-box;
+			padding: 0 37px 30px;
+			background-color: white;
+			border-radius: 16px;
+			position: absolute;
+			top: 61px;
+			right: 125px;
+			box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+
+
+		}
+
+		.move_shopping_cart_message {
+			width: 286px;
+			height: 95px;
+			text-align: center;
+			box-sizing: border-box;
+			padding-top: 35px;
+			font-size: 14px;
+		}
+
+		.move_shopping_cart_message_child01 {
+			font-size: 17px;
+			font-weight: 600;
+		}
+
+		.move_shopping_cartBtn {
+			display: flex;
+			margin-top: 32px;
+			justify-content: space-around;
+			margin-top: 32px;
+		}
+
+		.move_shopping_cartBtn div {
+			width: 126px;
+			height: 40px;
+			border-radius: 10px;
+			text-align: center;
+			box-sizing: border-box;
+			padding-top: 7px;
+			color: white;
+			font-weight: 700;
+
+		}
+
+		.move_shopping_cart_deleteBtn {
+			background-color: #767676;
+			cursor: pointer;
+		}
+
+		.move_shopping_cart_checkBtn {
+			background-color: #5055b1;
+			cursor: pointer;
+		}
+
+		.content {
+			margin-top: 125px;
+		}
+	</style>
+
+</th:block>
+<th:block layout:fragment="script">
+	<script>
+		const cancelBtn = document.querySelector('.login_cancel');
+		if (cancelBtn) {
+			cancelBtn.addEventListener('click', function (e) {
+				const loginCheck = document.querySelector('.review_loginCheck');
+				loginCheck.style.display = 'none';
+			});
+		}
+		const loginCheckBtn = document.querySelectorAll('.login_check');
+		if (loginCheckBtn) {
+			loginCheckBtn.forEach(function (e) {
+				e.addEventListener('click', function () {
+					location.href = "/kyobo/login";
+				});
+			});
+		}
+		/* 리뷰의 댓글 보기 */
+		document.querySelectorAll('.review_content_item_footer').forEach(function (footer) {
+			footer.addEventListener('click', function () {
+				const parent = this.closest('.review_content_item_footer_parent');
+				const comment = parent.querySelector('.review_comment');
+				if (comment.style.display === 'none' || window.getComputedStyle(comment) === 'none' || comment.style.display === '') {
+					comment.style.display = 'block';
+				} else {
+					comment.style.display = 'none';
+				}
+			});
+		});
+		/* 리뷰의 댓글 보기 */
+		document.querySelectorAll('.aladinlogo').forEach(function (item) {
+			item.addEventListener('click', function () {
+				location.href = "https://www.aladin.co.kr/home/welcome.aspx";
+			});
+		});
+		/*별점 바꾸기 */
+		document.querySelectorAll('.review_writeForm_scoreWrap > span').forEach(function (item, index, array) {
+			// start 클래스인 경우 지금 span 에는 start 클래스 말고 별도의 클래스도 포함되어 있기 때문에 
+			if (item.classList.contains('start')) {
+				item.addEventListener('click', function () { //지금 item은 한개의 요소 
+					//1. 모든별 초기화 
+					array.forEach(function (star) {
+						if (star.classList.contains('start')) {
+							star.style.backgroundImage = "url('https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_klover_lg_none@2x.png')";
+						}
+					});
+					//2. 클릭한 index 까지 별 채우기 
+					for (let i = 0; i <= index; i++) {
+						array[i].style.backgroundImage = "url('https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_klover@2x.png')";
+					}
+					//3. 점수업데이트 
+					const selectScore = document.querySelector('.select_score');
+					selectScore.textContent = (index + 1) * 2;
+					document.querySelector('.score').value = (index + 1) * 2;
+				});
+			}
+		});
+		//도서 리뷰시 별점 0 막아두기 
+		document.querySelector(".review_registerBtn").addEventListener('click', function (e) {
+			const score = document.querySelector('.score');
+
+			if (score.value === "0" || score.value === 0) {  // 문자열과 숫자 둘 다 체크
+				alert("별점을 선택해주세요.");
+				e.preventDefault();  // 여기서 e는 이벤트 객체
+			}
+		});
+		//댓글 작성 ajax 
+		$(document).on("click", ".review_commentRegist", function () {
+			const parent = $(this).closest(".review_section_content_item");
+			const reviewIdx = parent.data("review-idx");
+			const isbn = parent.find(".isbn").val();
+			const comment = parent.find(".comment_text").val();
+			const $commentList = parent.find(".review_comment_wrap");
+
+			$.ajax({
+				type: 'POST',
+				url: '/kyobo/comment/create',
+				data: {
+					reviewIdx: reviewIdx,
+					isbn: isbn,
+					comment: comment
+				},
+				success: function (comment) {
+					// 서버에 HTML 조각 요청
+					$.ajax({
+						type: 'POST',
+						url: '/kyobo/comment/fragment',
+						contentType: 'application/json',
+						data: JSON.stringify(comment),
+						success: function (html) {
+							$commentList.prepend(html); // 서버가 렌더링한 HTML 삽입
+						}
+					});
+				},
+				error: function (r, s, e) {
+					alert("[에러] code: " + r.status + ", message: " + r.responseText + ", error: " + e);
+				}
+			})
+		});
+		// 댓글 수정 클릭시 : 댓글 리스트를 감싸는 상위 요소에 이벤트 위임
+		document.addEventListener('DOMContentLoaded', function () {
+			const commentWrap = document.querySelector('.review_comment_wrap');
+			if (commentWrap) {
+				commentWrap.addEventListener('click', function (event) {
+					if (event.target.classList.contains('review_comment_updateBtn')) {
+						const parent = event.target.closest('.review_comment_item');
+						const updateWrap = parent.querySelector('.review_comment_update_wrap');
+						const comment = parent.querySelector('.review_comment_item_content');
+						const commentText = parent.querySelector('.review_comment_update');
+
+						if (updateWrap.style.display === 'none' || updateWrap.style.display === '') {
+							comment.style.display = 'none';
+							commentText.value = comment.textContent.trim(); // 기존 댓글 내용을 textarea에 넣음
+							updateWrap.style.display = 'block';
+						} else {
+							comment.style.display = 'block';
+							updateWrap.style.display = 'none';
+						}
+					}
+				});
+			}
+		});
+		document.addEventListener('DOMContentLoaded', function () {
+			const commentWrapList = document.querySelectorAll('.review_comment_wrap');
+			commentWrapList.forEach(commentWrap => {
+				commentWrap.addEventListener('click', function (event) {
+					const target = event.target;
+					// 1. 수정 취소 버튼
+					if (target.classList.contains('review_modify_deleteBtn')) {
+						const parent = target.closest('.review_comment_item');
+						const updateWrap = parent.querySelector('.review_comment_update_wrap');
+						const comment = parent.querySelector('.review_comment_item_content');
+
+						if (updateWrap && updateWrap.style.display === 'block') {
+							comment.style.display = 'block';
+							updateWrap.style.display = 'none';
+						}
+					}
+					// 2. 수정 등록 버튼
+					else if (target.classList.contains('review_modify_registBtn')) {
+						const parent = target.closest('.review_comment_item');
+						const commentIdx = parent.dataset.commentIdx;
+						const updateWrap = parent.querySelector('.review_comment_update_wrap');
+						const comment = parent.querySelector('.review_comment_item_content');
+						const commentText = parent.querySelector('.review_comment_update');
+						const commentDate = parent.querySelector('.review_comment_item_header_date');
+
+						if (commentText.value === comment.textContent.trim()) {
+							alert('내용을 수정하세요');
+							event.preventDefault();
+							return;
+						} else if (commentText.value.trim() === '') {
+							alert('내용을 작성하세요');
+							event.preventDefault();
+							return;
+						}
+
+						$.ajax({
+							method: 'post',
+							url: '/kyobo/comment/update',
+							data: {
+								commentData: commentText.value,
+								commentIdx: commentIdx
+							},
+							success: function (res) {
+								updateWrap.style.display = 'none';
+								comment.style.display = 'block';
+								comment.textContent = res.content;
+								commentDate.textContent = res.createDate;
+							},
+							error: function (r, s, e) {
+								alert("[에러] code: " + r.status + ", message: " + r.responseText + ", error: " + e);
+							}
+						});
+					}
+					// 3. 삭제 버튼
+					else if (target.classList.contains('review_comment_deleteBtn')) {
+						const parent = target.closest('.review_comment_item');
+						const commentIdx = parent.dataset.commentIdx;
+
+						if (confirm("정말로 삭제하시겠습니까 ?")) {
+							$.ajax({
+								method: 'post',
+								url: '/kyobo/comment/delete',
+								data: {
+									commentIdx: commentIdx
+								},
+								success: function () {
+									parent.remove();
+									alert("삭제 되었습니다.");
+								},
+								error: function (r, s, e) {
+									alert("[에러] code: " + r.status + ", message: " + r.responseText + ", error: " + e);
+								}
+							});
+						}
+					}
+				});
+			});
+			document.querySelectorAll('.price_text').forEach(el => {
+				let text = el.textContent.trim();
+				let match = text.match(/^(\d+)\s*원$/);
+				if (match) {
+					let num = Number(match[1]);
+					if (!isNaN(num)) {
+						el.textContent = num.toLocaleString('ko-KR') + ' 원';
+					}
+				}
+			});
+		});
+		const isLogin = document.querySelector('meta[name="isLogin"]').content === 'true';
+		//로그인 여부에 따라 리뷰 작성 
+		document.querySelectorAll('.review_createBtn').forEach(btn => {
+			btn.addEventListener('click', () => {
+				console.log("찍히는건가 ?", document.querySelectorAll('.review_createBtn'));
+				if (isLogin) {
+					const writeForm = btn.closest('.review_createBtn_parent')?.querySelector('.review_writeForm');
+					if (writeForm) {
+						writeForm.style.display = (writeForm.style.display === 'block') ? 'none' : 'block';
+					}
+				} else {
+					const loginCheck = btn.closest('.review_createBtn_parent')?.querySelector('.review_loginCheck');
+					if (loginCheck) {
+						loginCheck.style.display = (loginCheck.style.display === 'block') ? 'none' : 'block';
+					}
+				}
+			});
+		});
+		//장바구니 클릭했을때 안내문 
+		document.querySelectorAll(".cartBtn").forEach(btn => {
+			btn.addEventListener('click', function () {
+				const shopping_cart = document.querySelector(".move_shopping_cart");
+				const pathParts = window.location.pathname.split('/');
+				const isbn = pathParts[pathParts.length - 1];
+				if (isLogin) {
+					//장바구니에 저장하는 ajax 
+					$.ajax({
+						method: 'post',
+						data: {isbn: isbn},
+						url: '/kyobo/cart/insert',
+						success: function () {
+							$.ajax({
+								method: 'post',
+								url: '/kyobo/cart/count',
+								success: function (count) {
+									console.log("총 수량:", count);
+									$('.cartCount').text(count);
+								},
+								error: function (r, s, e) {
+									console.log("[에러] code 장바구니 수량 체실패 : " + r.status + ", message: " + r.responseText + ", error: " + e);
+								}
+							});
+						},
+						error: function (r, s, e) {
+							console.log("[에러] code: " + r.status + ", message: " + r.responseText + ", error: " + e);
+						}
+					})
+					//장바구니에 저장하는 ajax 
+					if (shopping_cart.style.display === "none" || shopping_cart.style.display === '') {
+						shopping_cart.style.display = "block";
+					}
+				} else {
+					const loginCheck = this.closest('.header_Btn_parent')?.querySelector('.review_loginCheck');
+					if (loginCheck) {
+						// 토글 방식 (보였다 안 보였다)
+						loginCheck.style.display = loginCheck.style.display === 'block' ? 'none' : 'block';
+					}
+				}
+			});
+		});
+		document.querySelector(".orderBtn").addEventListener('click', function () {
+			const loginCheck = this.closest('.header_Btn_parent')?.querySelector('.review_loginCheck');
+			if (!isLogin) {
+				loginCheck.style.display = "block";
+			}
+		});
+		document.querySelector('.move_shopping_cart_deleteBtn').addEventListener('click', function () {
+			document.querySelectorAll('.move_shopping_cart').forEach(function (item) {
+				if (item.style.display === 'block') {
+					item.style.display = 'none';
+				}
+			});
+		});
+		//장바구니 페이지 이동 
+		document.querySelector('.move_shopping_cart_checkBtn').addEventListener('click', function () {
+			location.href = "/kyobo/orderPayment";
+		});
+		//바로 구매 
+		document.querySelector(".orderBtn").addEventListener('click', function () {
+			// 현재 URL에서 ISBN 값을 추출
+			const pathParts = window.location.pathname.split('/');
+			const isbn = pathParts[pathParts.length - 1];  // 예: 9788936434120
+			if (isLogin) {
+				// 원하는 URL로 이동 (쿼리스트링에 추가)
+				location.href = `/kyobo/order/buynow?isbn=${isbn}`;
+			} else {
+				const isVisible = window.getComputedStyle(loginCheck).display !== 'none';
+
+				if (isVisible) {
+					loginCheck.style.display = 'none';
+				} else {
+					loginCheck.style.display = 'block';
+				}
+			}
+		});
+	</script>
+</th:block>
+<div layout:fragment="content">
+	<meta name="isLogin" th:content="${loginCheck}" />
+	<div class="nav">
+		상단바
+	</div>
+	<!--메인 책 정보 -->
+	<div class="main">
+		<div class="header_content_inner">
+
+			<div class="header_center_inner">
+				<div class="header_left_inner">
+					<span th:text="${item.author}"></span><br>
+					<span th:text="${pubDate}"></span>
+				</div>
+				<div class="header_center_img">
+					<img th:src="${detail.thumbnail}">
+				</div>
+			</div>
+			<div class="header_right_inner">
+
+				<div class="header_center_title" th:text="${item.title}">
+				</div>
+				<div class="header_center_category" th:text="${item.author}">
+				</div>
+				<div class="header_center_type_item">
+					<div class="header_center_item_inner">
+						<div>국내 도서 </div>
+						<div class="price_text" th:text="|${detail.price}원|"></div>
+					</div>
+				</div>
+				<div class="header_right_price">
+					<div>가격</div>
+					<div class="price_text" th:text="|${detail.price}원|"></div>
+				</div>
+				<div class="header_right_delivery">
+					<div>배송 안내</div>
+					<div class="delivery_detail">
+						<span>무료배송</span><br>
+						<span th:text="${#temporals.format(twoDaysLater, 'yyyy년 MM월 dd일')}"></span><br />
+						<span>기본배송지 기준</span>
+					</div>
+				</div>
+				<div class="header_Btn_parent">
+					<div class="header_Btn">
+						<div class="cartBtn">장바구니</div>
+						<div class="orderBtn">바로 구매</div>
+					</div>
+					<div class="move_shopping_cart">
+						<div class="move_shopping_cart_message">
+							<span class="move_shopping_cart_message_child01">상품이 장바구니에 담겼습니다.</span><br />
+							<spab>장바구니로 이동하시겠습니까?</spab>
+						</div>
+						<div class="move_shopping_cartBtn">
+							<div class="move_shopping_cart_deleteBtn">취소</div>
+							<div class="move_shopping_cart_checkBtn">확인</div>
+						</div>
+					</div>
+					<div class="review_loginCheck">
+						<div class="review_loginpost_1">로그인 후 이용가능합니다</div>
+						<div class="review_loginpost_2">로그인 페이지로 이동하시겠습니까?</div>
+						<div class="review_loginCheckBtnBox">
+							<button class="login_cancel">취소</button>
+							<button class="login_check">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--메인 책 정보 -->
+		<!--탭 리스트 -->
+		<div class="tab_list">
+			<div>상품정보</div>
+			<div th:text="|리뷰 (${#lists.size(detail.reviewList)})|"></div>
+		</div>
+		<!--탭 리스트 -->
+		<!--책 설명-->
+		<div class="main_book_inform">
+			<img th:src="${detail.introductionImg}">
+			<!--작가설명 -->
+			<div class="author_inform">
+				<div>작가정보</div>
+				<div class="author_inform_detail">
+					<div class="author_inform_name">
+						<span>저자(글)</span>
+						<span th:text="${item.author}"></span>
+					</div>
+					<div class="author_inform_content">
+
+					</div>
+				</div>
+			</div>
+			<!--작가설명 -->
+			<!--목차-->
+			<div class="book_index">
+				<div>목차</div>
+				<div class="book_index_detail" th:if="${indexDtoList==null or #lists.isEmpty(indexDtoList)}">
+					이 도서는 목차가 없습니다
+				</div>
+				<div class="book_index_detail" th:each="index, stat : ${indexDtoList}">
+					<span th:text="|${stat.index +1} 장|"></span>
+					<span th:text="${index.indexName}"></span>
+				</div>
+			</div>
+			<!--목차-->
+			<!--책 요약 -->
+			<div class="book_summation">
+				<div class="book_summation_title">
+					책 요약
+				</div>
+				<div th:text="${item.description}">
+				</div>
+				<div>
+					<span>정보제공 : </span>
+					<img src="https://img.megazonesoft.com/wp-content/uploads/2018/03/13145335/%EC%95%8C%EB%9D%BC%EB%94%98-%EB%A1%9C%EA%B3%A0.png" class="aladinlogo">
+				</div>
+			</div>
+			<!--책 요약 -->
+			<!--출판사 서평 -->
+			<div class="book_review">
+				<div>출판사 서평</div>
+				<div class="book_review_detail" th:text="${detail.bookReview}">
+				</div>
+			</div>
+			<!--출판사 서평 -->
+			<!--기본정보-->
+			<div class="basic_inform">
+				<span class="basic_inform_title">기본정보</span>
+				<table>
+					<tr>
+						<td class="basic_inform_one">발행 일자</td>
+						<td class="basic_inform_two" th:text="${pubDate}"></td>
+					</tr>
+					<tr>
+						<td class="basic_inform_one">크기</td>
+						<td class="basic_inform_two">145 * 210 mm</td>
+					</tr>
+					<tr>
+						<td class="basic_inform_one">원서(번역서)명/저자명</td>
+						<td class="basic_inform_two" th:text="${item.author}"></td>
+					</tr>
+				</table>
+			</div>
+			<!--기본정보-->
+		</div>
+	</div>
+	<!--댓글-->
+	<div class="review_section">
+		<div class="review_section_header">
+			<div class="total_review" th:text="|Klover리뷰 (${#lists.size(detail.reviewList)})|">
+
+			</div>
+			<div class="review_createBtn_parent">
+				<button class="review_createBtn">리뷰 작성</button>
+				<div class="review_loginCheck">
+					<div class="review_loginpost_1">로그인 후 이용가능합니다</div>
+					<div class="review_loginpost_2">로그인 페이지로 이동하시겠습니까?</div>
+					<div class="review_loginCheckBtnBox">
+						<button class="login_cancel">취소</button>
+						<button class="login_check">확인</button>
+					</div>
+				</div>
+				<!-- 리뷰 작성하는 form-->
+
+				<div class="review_writeForm">
+					<form th:action="@{/review/create}" method="post" th:object="${reviewForm}">
+						<div th:replace="~{form_errors :: formErrorsFragment}"></div>
+						<input name="score" class="score" type="hidden" value="0">
+						<input name="isbn" class="isbn" type="hidden" th:value="${isbn}">
+						<div class="review_writeForm_header">
+							<div class="review_writeForm_bookImg">
+								<img th:src="${detail.thumbnail}">
+							</div>
+							<div class="review_writeForm_score">
+								<span class="review_writeForm_header_title" th:text="${detail.bookName}"></span><br>
+								<div class="review_writeForm_scoreWrap">
+									<span class="start"></span>
+									<span class="start"></span>
+									<span class="start"></span>
+									<span class="start"></span>
+									<span class="start"></span>
+									<span class="select_score">0</span>
+									<span>/</span>
+									<span>10</span>
+								</div>
+							</div>
+						</div>
+						<div class="review_writeDiv">
+							<span>리뷰 작성</span><br>
+							<textarea name="review" placeholder="주제와 무관한 댓글, 악플, 배송문의 등의 글은 임의 삭제 될 수 있습니다."></textarea>
+						</div>
+						<button class="review_registerBtn" type="submit">등록</button>
+					</form>
+				</div>
+
+				<!-- 리뷰 작성하는 form-->
+			</div>
+		</div>
+		<div class="review_section_content">
+			<div class="review_section_content_lists">
+				<span>구매 리뷰</span>
+			</div>
+			<!--총 댓글 리스트 -->
+			<div>
+				<div class="review_section_content_item" th:each="review : ${paging}"
+					th:attr="data-review-idx=${review.reviewIdx}">
+					<div class="review_content_item_header">
+						<div class="paper_book">종이책</div>
+						<div class="buyer">구매자</div>
+						<div class="review_section_userId" th:text="${review.memberId}"></div>
+						<div class="review_section_createDate"
+							th:text="${#temporals.format(review.createDate, 'yyyy년 MM월 dd일')}"></div>
+					</div>
+					<div class="review_content_item_conent" th:text="${review.content}">
+					</div>
+					<div class="review_content_item_footer_parent">
+						<div class="review_content_item_footer">
+							<span class="icon"></span>
+							<span>답글</span>
+							<span th:if="${review.commentList != null}"
+								th:text="${#lists.size(review.commentList)}"></span>
+						</div>
+						<!--댓글 -->
+						<di class="review_comment">
+							<input name="reviewIdx" class="reviewIdxHidden" type="hidden">
+							<input name="isbn" class="isbn" type="hidden" th:value="${isbn}">
+							<div class="review_input_wrap">
+								<textarea name="comment" class="comment_text" placeholder="1000자 이내로 입력해주세요"></textarea>
+								<div class="review_commentBtn_wrap">
+									<button class="review_commentCancle">취소</button>
+									<button class="review_commentRegist">등록</button>
+								</div>
+							</div>
+							<div class="review_comment_wrap">
+								<div class="review_comment_item" th:each="comment: ${review.commentList}"
+									th:attr="data-comment-idx=${comment.commentIdx}">
+									<div class="review_comment_item_header">
+										<span th:text="${comment.memberId}"></span>
+										<span th:text="${#temporals.format(comment.createDate, 'yyyy-MM-dd')}"
+											class="review_comment_item_header_date"></span>
+										<!--로그인한 사용자 체크, 같은 Id 인지 체크 -->
+										<span class="review_comment_updateBtn" sec:authorize="isAuthenticated()"
+											th:if="${comment.memberId != null and #authentication.getPrincipal().getUsername() == comment.memberId}">수정</span>
+										<span class="review_comment_deleteBtn" sec:authorize="isAuthenticated()"
+											th:if="${comment.memberId != null and #authentication.getPrincipal().getUsername() == comment.memberId}">삭제</span>
+									</div>
+									<div class="review_comment_body">
+										<div class="review_comment_item_content" th:text="${comment.comment}">
+										</div>
+										<div class="review_comment_update_wrap">
+											<textarea class="review_comment_update"></textarea>
+											<div class="review_modifyBtn_wrap">
+												<div class="review_modify_deleteBtn">취소</div>
+												<div class="review_modify_registBtn">등록</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					</div>
+					<!--댓글 -->
+				</div>
+			</div>
+		</div>
+		<!--총 댓글 리스트 -->
+		<!--페이징 처리 -->
+		<div th:if="${!paging.isEmpty()}">
+			<ul class="paging_ul">
+				<li th:classappend="${!paging.hasPrevious} ? 'disabled'">
+					<a th:href="@{|?page=${paging.number-1}|}">
+						<span>이전</span>
+					</a>
+				</li>
+				<li th:each="page : ${#numbers.sequence(0, paging.totalPages-1)}"
+					th:classappend="${page == paging.number } ? 'activePaing' ">
+					<a th:text="${page+1}" th:href="@{|?page=${page}|}">
+					</a>
+				</li>
+				<li th:classappend="${!paging.hasNext} ? 'disabled'">
+					<a th:href="@{|?page=${paging.number+1}|}">
+						<span>다음</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!--페이징 처리 -->
+	</div>
+</div>
+</html>

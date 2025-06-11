@@ -1,0 +1,842 @@
+<html layout:decorate="~{layout}">
+<th:block layout:fragment="css">
+	<style>
+		.nav {
+			width: 100%;
+			height: 122px;
+			background-color: pink;
+		}
+
+		.footer {
+			width: 100%;
+			height: 302px;
+			background-color: cornflowerblue;
+		}
+
+		.content {
+			width: 1200px;
+			margin: 125px auto 0;
+		}
+
+		/*장바구니 탑 */
+		.cart_top_wrap {
+			margin: 30px 0;
+		}
+
+		.cart_top_wrap_title {
+			display: flex;
+			gap: 21px;
+			align-items: center;
+		}
+
+		.cart_top_wrap_left_one>span {
+			font-size: 24px;
+			font-weight: 700;
+		}
+
+		.location_icon {
+			display: inline-block;
+			width: 13px;
+			height: 19px;
+			background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_locate_black@2x.png) left center no-repeat;
+			background-size: 13px 19px;
+		}
+
+		.active {
+			background-color: #4dac27;
+		}
+
+		.inactive {
+			background-color: #d5d5d5;
+		}
+
+		.cart_top_wrap_right {
+			width: 369px;
+			align-items: center;
+			margin-left: 699px;
+			display: flex;
+			justify-content: space-around;
+		}
+
+		.page_icon {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			color: white;
+			display: inline-block;
+			text-align: center;
+		}
+
+		.active_part {
+			font-weight: 700;
+		}
+
+		.inactive_part {
+			color: #d5d5d5;
+		}
+
+		/*장바구니 탑 */
+		.cart_top_wrap_second {
+			width: 896px;
+			height: 44px;
+			margin: 30px 0;
+		}
+
+		.cart_kyoboicon {
+			width: 81px;
+			height: 36px;
+			border: 1px solid #d5d5d5;
+			border-radius: 20px;
+			box-sizing: border-box;
+			padding: 9px;
+
+		}
+
+		/*결제 wrap */
+		.payment_body_wrap {
+			width: 888px;
+			height: 257px;
+			border-radius: 10px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			padding: 28px;
+		}
+
+		.delivery_address_info {
+			display: flex;
+			gap: 80px;
+		}
+
+		.delivery_address_info_one {
+			font-weight: 700;
+		}
+
+		.delivery_address_info_child1 {
+			display: flex;
+			gap: 4px;
+			margin-bottom: 8px;
+		}
+
+		.delivery_address_info_child2 {
+			font-size: 14px;
+			font-weight: 700;
+			margin-bottom: 10px;
+		}
+
+		.delivery_address_info_child3 {
+			font-size: 14px;
+			color: gray;
+		}
+
+		.delivery_message_info {
+			display: flex;
+			gap: 65px;
+			margin: 28px 0;
+		}
+
+		/*결제 wrap */
+		/*카트 리스트 */
+		.cart_list {
+			display: flex;
+			width: 890px;
+			height: 175px;
+			box-sizing: border-box;
+			border-top: 1px solid #eaeaea;
+		}
+
+		.cart_list_first {
+			box-sizing: border-box;
+			padding: 20px 0;
+		}
+
+		.cart_list_second {
+			box-sizing: border-box;
+			padding: 20px 0;
+			position: relative;
+			width: 486px;
+			border-right: 1px solid #eaeaea;
+		}
+
+		.book_img_div {
+			display: inline-block;
+		}
+
+		.book_img_div>img {
+			width: 82px;
+		}
+
+		.cart_list_second_title {
+			font-size: 15px;
+			font-weight: 700;
+			position: absolute;
+			left: 104px;
+		}
+
+		.cart_list_second_price {
+			font-weight: 600;
+			color: #6a6a6a;
+			position: absolute;
+			left: 103px;
+			top: 51px;
+		}
+
+		.cart_list_thrid {
+			border-right: 1px solid #eaeaea;
+			width: 140px;
+			box-sizing: border-box;
+			padding: 44px 30px;
+		}
+
+		.cart_list_thrid_price {
+			font-weight: 700;
+		}
+
+		.quantity_check {
+			display: flex;
+		}
+
+		.quantity_check>button {
+			width: 27px;
+			height: 30px;
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+			background: white;
+			cursor: pointer;
+		}
+
+		.quantity_check>input {
+			width: 27px;
+			height: 26px;
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+			border-right: none;
+			border-left: none;
+			text-align: center;
+		}
+
+		.left_btn {
+			border-radius: 4px 0 0 4px;
+			border-right: none;
+			border-left: 1px solid #ccc;
+		}
+
+		.right_btn {
+			border-left: none;
+			border-radius: 0 4px 4px 0;
+			border-right: 1px solid #ccc;
+		}
+
+		.cart_list_fourth_left {
+			width: 200px;
+			box-sizing: border-box;
+			padding: 25px;
+		}
+
+		.cart_list_fourth_right {
+			margin-top: 11px;
+		}
+
+		.sameDay_delivary {
+			width: 59px;
+			height: 26px;
+			font-size: 12px;
+			background: #ededf7;
+			border-radius: 20px;
+			color: #474c98;
+			box-sizing: border-box;
+			padding: 6px;
+			margin-bottom: 10px;
+		}
+
+		.cart_list_fourth {
+			display: flex;
+			width: 222px;
+		}
+
+		.cart_list_fourth_left>span {
+			font-size: 14px;
+			font-weight: 700;
+		}
+
+		.cart_list_deleteBtn {
+			width: 21px;
+			height: 21px;
+			display: inline-block;
+			background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_delete_ord@2x.png);
+			background-size: 21px 21px;
+			cursor: pointer;
+		}
+		
+		.payment_promotion{
+			position: relative;
+		}
+
+		/*카트 리스트 */
+		.payment_promotion>img {
+			width: 890px;
+			height: auto;
+		}
+
+		.cart_note>img {
+			width: 890px;
+			height: auto;
+		}
+
+		/*결제 정보 알림박스 */
+		.payment_info {
+			width: 273px;
+			height: 252px;
+			box-sizing: border-box;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 20px;
+			position: fixed;
+			top: 229px;
+			right: 67px;
+			background: white;
+		}
+
+		.payment_info_first {
+			height: 73px;
+			border-bottom: 1px solid;
+		}
+
+		.payment_info_first_part {
+			display: flex;
+			justify-content: space-around;
+			margin: 10px 0;
+		}
+
+		.payment_info_first_price {
+			font-weight: 700;
+		}
+
+		.payment_info_second {
+			height: 56px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+
+		.payment_info_second>span {
+			font-weight: 700;
+		}
+
+		.payment_info_second_price {
+			font-size: 20px
+		}
+
+		.payment_info_orderBtn {
+			background: #832383;
+			border: none;
+			color: white;
+			width: 130px;
+			height: 40px;
+			border-radius: 10px;
+			margin-left: 52px;
+			margin-top: 16px;
+			cursor: pointer;
+		}
+
+		.delivery_message_info_title {
+			font-weight: 700;
+		}
+
+		.request {
+			width: 500px;
+			height: 27px;
+			border: 1px solid gray;
+			border-radius: 7px;
+			color: gray;
+		}
+
+		.delievery_gatemessage {
+			display: flex;
+		}
+
+		.delievery_gatemessage_title {
+			margin-right: 33px;
+			font-weight: 700;
+		}
+
+		.delivery_orderer_name {
+			color: #832383;
+			font-weight: 700;
+		}
+
+		.delivery_addressIcon {
+			width: 89px;
+			height: 28px;
+			border: 1px solid #832383;
+			border-radius: 20px;
+			font-size: 14px;
+			color: #832383;
+			text-align: center;
+			box-sizing: border-box;
+			padding: 4px;
+			margin-left: 5px;
+			display: flex;
+		    align-items: center;
+		    justify-content: center;
+		}
+
+		/*결제 정보 알림박스 */
+		/*주문 상품*/
+		.ordered_product {
+			width: 888px;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			margin: 30px 0;
+			box-sizing: border-box;
+		}
+
+		.product_count {
+			margin-bottom: 27px;
+			border-bottom: 1px solid #ccc;
+			box-sizing: border-box;
+			padding: 28px;
+		}
+
+		.product_count_title {
+			font-weight: 700;
+			margin-right: 92px;
+		}
+
+		.product_count_total {
+			font-weight: 700;
+			color: #832383;
+		}
+
+		.order_list_item {
+			box-sizing: border-box;
+			padding: 28px;
+			display: flex;
+			align-items: center;
+			border-bottom: 1px dotted #ccc;
+		}
+
+		.order_book_coverImg>img {
+			width: 82px;
+			height: auto;
+		}
+
+		.order_list_item_child2 {
+		    font-size: 14px;
+		    font-weight: 700;
+		    padding-left: 48px;
+		    width: 380px;
+		}
+
+		.order_list_dawn_deliveryIcon {
+			width: 77px;
+			height: 30px;
+			box-sizing: border-box;
+			padding: 5px;
+			font-size: 14px;
+			text-align: center;
+			margin-right: 61px;
+			background: #ebd5eb;
+			color: white;
+			border-radius: 20px;
+		}
+
+		.order_list_item_count {
+			margin-right: 18px;
+			width: 90px;
+		}
+
+		.order_list_item_price {
+			font-weight: 700;
+			width: 123px;
+		}
+
+		.delivery_info_list {
+			box-sizing: border-box;
+			padding: 28px;
+		}
+
+		.delivery_info_title {
+			font-weight: 700;
+			margin-right: 45px;
+		}
+
+		.delivery_info_date {
+			font-size: 14px;
+		}
+
+		/*주문 상품*/
+		/*할인 쿠폰*/
+		.discount_coupon {
+			width: 886px;
+			box-sizing: border-box;
+			padding: 28px;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			font-weight: 700;
+			display: flex;
+			gap: 70px;
+		}
+
+		/*할인 쿠폰*/
+		/*결제 수단*/
+		.payment_method {
+			width: 886px;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			margin: 30px 0;
+		}
+
+		.payment_method_header {
+			height: 84px;
+			box-sizing: border-box;
+			padding: 30px;
+			border-bottom: 1px solid #ccc;
+			font-weight: 700;
+		}
+
+		.payment_method_item {
+			padding: 20px;
+			box-sizing: border-box;
+			text-align: center;
+			border-radius: 6px;
+			width: 160px;
+			height: 60px;
+			border: 1px solid #ccc;
+			font-weight: 700;
+		}
+
+		.payment_method_footer {
+			box-sizing: border-box;
+			padding: 29px 0 32px 26px;
+			border-top: 1px solid #ccc;
+		}
+
+		.payment_method_footer>img {
+			width: 826px;
+			height: auto;
+		}
+
+		.payment_method_content {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 20px;
+			box-sizing: border-box;
+			padding: 20px;
+		}
+
+		.payment_method_content>div {
+			width: calc(100% / 5 - 0px);
+			cursor: pointer;
+		}
+
+		.naver_pay {
+			background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_payment_npay@2x.png);
+			background-size: 125px 32px;
+			display: inline-block;
+			width: 125px;
+			height: 32px;
+		}
+
+		.kakao {
+			background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_payment_kakaopay@2x.png);
+			background-size: 125px 32px;
+			display: inline-block;
+			width: 125px;
+			height: 32px;
+		}
+
+		.payco {
+			background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_payment_payco@2x.png);
+			background-size: 125px 32px;
+			display: inline-block;
+			width: 125px;
+			height: 32px;
+		}
+
+		.toss_pay {
+			background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_payment_toss@2x.png);
+			background-size: 125px 32px;
+			display: inline-block;
+			width: 125px;
+			height: 32px;
+		}
+
+		.pay_items {
+			border: 1px solid #ccc;
+			border-radius: 6px;
+			box-sizing: border-box;
+			padding: 9px 0 0 24px;
+			height: 57px;
+		}
+		.img_blinder{
+			width: 30px;
+			height: 30px;
+			background-color: #F7F7F7;
+		}
+		.first_blinder{
+			position: absolute;
+			bottom: 145px;
+		    left: 840px;
+		}
+		.second_blinder{
+			position: absolute;
+			bottom: 90px;
+			left: 840px;
+		}
+		.third_blinder{
+			position: absolute;
+			bottom: 35px;
+			left: 840px;
+		}
+		.fourth_blinder{
+			position: absolute;
+			bottom: -60px;
+			left: 840px;
+		}
+		/*결제 수단*/
+	</style>
+</th:block>
+<th:block layout:fragment="script">
+	<script>
+		//클릭한 결제수단 선택하기 
+		document.querySelectorAll('.payment_method_content > div').forEach(function (item) {
+			item.addEventListener('click', function () {
+				// 모든 항목 배경색 white로 초기화
+				document.querySelectorAll('.payment_method_content > div').forEach(function (el) {
+					el.style.backgroundColor = 'white';
+					el.style.border = '1px solid #ccc';
+				});
+				// 현재 클릭한 항목만 blue로 설정
+				item.style.backgroundColor = 'rgba(80, 85, 177, 0.06)';
+				item.style.border = '1px solid #5055b1';
+			});
+		});
+		//주문하기전 결제수단 체크하기 
+		document.querySelector('.payment_info_orderBtn').addEventListener('click', function () {
+			const paymentMethod = document.querySelectorAll('.payment_method_content > div');
+			let check = false;
+
+			paymentMethod.forEach(function (method) {
+				if (method.style.backgroundColor === 'rgba(80, 85, 177, 0.06)') {
+					check = true;
+				}
+			});
+
+			const totalPriceText = document.querySelector('.payment_info_second_price').textContent;
+			const request = document.querySelector('.request').value;
+			const book_order = document.querySelector('.book_order_insert');
+			const order_total_price = document.querySelector('.order_total_price');
+			const order_request = document.querySelector('.order_request');
+
+			// 💡 숫자만 추출해서 설정
+			const numericPrice = totalPriceText.replace(/[,\s원]/g, '');
+			order_total_price.value = numericPrice;
+			order_request.value = request;
+
+			if (!check) {
+				alert('결제수단을 확인해주세요.');
+			} else {
+				book_order.submit();
+			}
+		});
+
+		document.addEventListener('DOMContentLoaded', function(){
+			document.querySelectorAll(".priceElement").forEach(el => {
+				const text = el.textContent.trim();
+				const match = text.match(/^(\d+)\s*원$/);
+				if (!match) return;
+
+				const number = Number(match[1]);
+				const formatted = number.toLocaleString("ko-KR");
+				el.textContent = `${formatted} 원`;
+			});
+			
+			const deliveryInfoDate = document.querySelector('.delivery_info_date');
+			if (deliveryInfoDate) {
+				const today = new Date();
+				const tomorrow = new Date(today);
+				tomorrow.setDate(today.getDate() + 1);
+
+				const month = tomorrow.getMonth() + 1;
+				const day = tomorrow.getDate();
+
+				deliveryInfoDate.textContent = `내일(${month}/${day})도착`;
+			}
+		});
+		//주문 PostMepping
+		/*document.querySelector('.payment_info_orderBtn').addEventListener('click', function(){
+			const totalPrice = document.querySelector('.payment_info_second_price').textContent;
+			const request = document.querySelector('.request').value;
+			const book_order = document.querySelector('.book_order_insert'); //form 태그 
+			const order_total_price = document.querySelector('.order_total_price');
+			const order_request = document.querySelector('.order_request');
+			order_total_price.value = totalPrice;
+			order_request.value = request;
+		});*/
+	</script>
+</th:block>
+<div layout:fragment="nav" class="nav"></div>
+<div layout:fragment="content" class="content">
+	<!--cart top 부분 -->
+	<div class="cart_top_wrap">
+		<div class="cart_top_wrap_title">
+			<div class="cart_top_wrap_left_one">
+				<span>주문/결제</span>
+			</div>
+			<div class="cart_top_wrap_right">
+				<div>
+					<div class="page_icon inactive">1</div>
+					<span class="active_part">장바구니</span>
+				</div>
+				<div>
+					<div class="page_icon active">2</div>
+					<span class="inactive_part">주문 / 결제</span>
+				</div>
+				<div>
+					<div class="page_icon inactive">3</div>
+					<span class="inactive_part">주문 완료</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--cart top 부분 -->
+	<!--cart content 부분 -->
+	<div class="cart_content_wrap">
+		<!--배송지 정보-->
+		<div class="payment_body_wrap">
+			<div class="delivery_address_info">
+				<div class="delivery_address_info_one">배송지 정보</div>
+				<div>
+					<div class="delivery_address_info_child1">
+						<span class="location_icon"></span>
+						<span class="delivery_orderer_name" th:text="집"></span>
+						<div class="delivery_addressIcon">
+							기본 배송지
+						</div>
+					</div>
+					<div class="delivery_address_info_child2">
+						<span th:text="${member.name}"></span>
+						<span>/</span>
+						<span th:text="${member.phone}"></span>
+					</div>
+					<div class="delivery_address_info_child3">
+						<span>[000000]</span>
+						<span>서울시 영등포구 00 로 00 아파트 00동 00호 </span>
+					</div>
+				</div>
+			</div>
+			<div class="delivery_message_info">
+				<div class="delivery_message_info_title">배송 요청사항</div>
+				<input name="request_pre" class="request" placeholder="&nbsp;&nbsp;배송 시 요청사항 있으시면 작성해주세요.">
+
+			</div>
+			<div class="delievery_gatemessage">
+				<div class="delievery_gatemessage_title">공동현관 출입방법</div>
+				<input type="checkbox" checked="true"> &nbsp;&nbsp;자유출입 가능
+			</div>
+		</div>
+		<!--배송지 정보-->
+		<div class="payment_info">
+			<div class="payment_info_first">
+				<div class="payment_info_first_part">
+					<span>상품 금액</span>
+					<div>
+						<span class="payment_info_first_price priceElement" th:text="${totalPrice} + ' 원'"></span>
+					</div>
+				</div>
+				<div class="payment_info_first_part">
+					<span>배송비</span>
+					<span>+0 원</span>
+				</div>
+			</div>
+			<div class="payment_info_second">
+				<span>결제 예정 금액</span>
+				<span class="payment_info_second_price priceElement" th:text="${totalPrice} + ' 원'"></span>
+			</div>
+			<form th:action="@{/order/insert}" method="post" class="book_order_insert">
+				<input class="order_total_price" type="hidden" name="totalPrice">
+				<input class="order_request" type="hidden" name="request">
+			</form>
+			<button class="payment_info_orderBtn">
+				주문하기
+				<span class="payment_info_count" th:text="${countCart}"></span>
+			</button>
+		</div>
+		<!--주문 상품-->
+		<div class="ordered_product">
+			<div class="product_count">
+				<span class="product_count_title">주문 상품</span>
+				<span>총</span>
+				<span class="product_count_total" th:text="${countCart}"></span>
+				<span>개</span>
+			</div>
+			<div class="order_lists_wrap" th:each="orderDto : ${orderListDto}">
+				<div class="order_list_item">
+					<div class="order_book_coverImg"><img th:src="${orderDto.thumbnail}"></div>
+					<div class="order_list_item_child2">
+						<span>[국내 도서]</span>
+						<span th:text="${orderDto.bookName}"></span>
+					</div>
+					<div>
+						<div class="order_list_dawn_deliveryIcon">새벽 배송</div>
+					</div>
+					<div class="order_list_item_count" th:text="${orderDto.count} + '개'">
+					</div>
+					<div class="order_list_item_price priceElement" th:text="${orderDto.count * orderDto.price} + ' 원'">
+					</div>
+				</div>
+			</div>
+			<div class="delivery_info_list">
+				<span class="delivery_info_title">교보문고 배송</span>
+				<input type="checkbox" checked="true">&nbsp;
+				<span class="delivery_info_date">내일(5/10)도착</span>
+			</div>
+		</div>
+		<!--주문 상품-->
+		<!--할인 코드-->
+		<div class="discount_coupon">
+			<span>할인쿠폰</span>
+			<span>사용가능한 쿠폰이 없습니다.</span>
+		</div>
+		<!--할인 코드-->
+		<!--결제 수단-->
+		<div class="payment_method">
+			<div class="payment_method_header">
+				결제 수단
+			</div>
+			<div class="payment_method_content">
+				<div class="payment_method_item">신용카드</div>
+				<div class="payment_method_item">온라인 입금</div>
+				<div class="pay_items">
+					<span class="naver_pay"></span>
+				</div>
+				<div class="pay_items">
+					<span class="kakao"></span>
+				</div>
+				<div class="pay_items">
+					<span class="payco"></span>
+				</div>
+				<div class="pay_items">
+					<span class="toss_pay"></span>
+				</div>
+			</div>
+			<!--<div class="payment_method_footer">
+				<img th:src="@{/img/페이.png}">
+			</div>-->
+		</div>
+		<!--결제 수단-->
+		<div class="payment_promotion">
+			<img th:src="@{/img/결제 프로모션.png}">
+			<div class="img_blinder first_blinder"></div>
+			<div class="img_blinder second_blinder"></div>
+			<div class="img_blinder third_blinder"></div>
+			<div class="img_blinder fourth_blinder"></div>
+		</div>
+		<div class="cart_note">
+			<img th:src="@{/img/장바구니.png}">
+		</div>
+	</div>
+	<!--cart content 부분 -->
+</div>
+<div layout:fragment="footer" class="footer"></div>
+</html>

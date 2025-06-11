@@ -1,0 +1,409 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="main_area">
+	<style>
+		.main_area {
+			display: flex;
+			justify-content: center;
+			min-height: 100vh;
+			padding: 50px 0;
+		}
+
+		.check_member_div {
+			width: 55%;
+			min-width: 700px;
+			border-radius: 12px;
+			padding: 40px 50px;
+		}
+
+		.flex_my_page {
+			display: flex;
+			gap: 10px;
+			margin-bottom: 30px;
+		}
+
+		.modify_text_div {
+			flex: 1;
+			height: 40px;
+			background-color: rgb(81, 85, 174);
+			color: white;
+			font-weight: bold;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: background-color 0.3s ease, box-shadow 0.3s ease;
+		}
+
+		.modify_text_div:hover {
+			background-color: rgb(60, 64, 140);
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+		}
+
+		.modify_text_div:active {
+			transform: scale(0.97);
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		}
+
+		.input_area {
+			display: flex;
+			margin-bottom: 25px;
+			align-items: center;
+			gap: 130px;
+		}
+
+		.input_label {
+			width: 120px;
+			font-size: 1em;
+			color: #333;
+			font-weight: 600;
+		}
+
+		.input_wrapper {
+			position: relative;
+			width: 400px;
+		}
+
+		.input_field,
+		.input_field_with_button {
+			height: 40px;
+			padding-left: 12px;
+			font-size: 15px;
+			border: 1px solid #d1d5db;
+			border-radius: 6px;
+			background-color: #f9fafb;
+			color: #333;
+			transition: all 0.2s ease;
+		}
+
+		.input_field_with_button {
+			width: 100%;
+			padding-right: 65px;
+		}
+
+		.input_field.border_none,
+		.input_field_with_button.border_none {
+			border: none;
+			background-color: transparent;
+			color: #666;
+			pointer-events: auto;
+			cursor: default;
+		}
+
+		.change_button_absolute {
+			position: absolute;
+			right: 8px;
+			top: 6px;
+			height: 28px;
+			width: 55px;
+			border-radius: 6px;
+			border: 1px solid rgb(81, 85, 174);
+			background-color: #ffffff;
+			color: rgb(81, 85, 174);
+			font-size: 0.9em;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 0.2s ease;
+		}
+
+		.change_button_absolute:hover {
+			background-color: rgb(81, 85, 174);
+			color: white;
+			box-shadow: 0 2px 6px rgba(81, 85, 174, 0.2);
+		}
+
+		.change_button_absolute:active {
+			transform: scale(0.96);
+		}
+
+		.submit_area {
+			display: flex;
+			justify-content: center;
+			margin-top: 40px;
+		}
+
+		.submit_button {
+			width: 160px;
+			height: 45px;
+			background-color: rgb(81, 85, 174);
+			color: white;
+			border: none;
+			border-radius: 6px;
+			font-weight: bold;
+			font-size: 15px;
+			cursor: pointer;
+			transition: background-color 0.2s ease, transform 0.2s ease;
+		}
+
+		.submit_button:hover {
+			background-color: rgb(60, 64, 140);
+			transform: translateY(-1px);
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.submit_button:active {
+			background-color: rgb(50, 54, 120);
+			transform: translateY(0);
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		}
+		.input_field:focus:not([readonly]),
+		.input_field_with_button:focus:not([readonly]) {
+			border-color: #5155ae;
+			outline: none;
+			box-shadow: 0 0 0 3px rgba(81, 85, 174, 0.2);
+		}
+		.input_field[readonly],
+		.input_field_with_button[readonly] {
+			cursor: default;
+			color: #777;
+		}
+		/* 활성화 상태에서만 호버 스타일 적용 */
+		.input_field:hover:not([readonly]),
+		.input_field_with_button:hover:not([readonly]) {
+			border-color: #5155ae;
+			box-shadow: 0 0 0 3px rgba(81, 85, 174, 0.1);
+			cursor: text;
+		}
+		.input_field.pw{
+			width:60%;
+			max-width: 400px;
+		}
+		.input_field[readonly]:focus,
+		.input_field_with_button[readonly]:focus {
+		    outline: none;
+		    box-shadow: none;
+		}
+	</style>
+	<div class="check_member_div">
+		<div class="flex_my_page">
+			<span class="modify_text_div">기본 정보 수정</span>
+			<span class="modify_text_div real_my_page">마이페이지</span>
+		</div>
+		<form id="infoForm" th:action="@{/member/update}" method="post">
+			<div style="color: red;">
+				Ajax 중복체크 기능 구현 했습니다<br/>
+				확인 버튼을 눌러야만 반영이 되며, 중복사항이 있다면 반영이 되지 않습니다<br/>
+				1. 휴대폰번호 : 01099998888<br/>
+				2. 이메일 : test99@gmail.com
+			</div>
+			<div class="input_area">
+				<span class="input_label">아이디</span>
+				<input type="text" class="input_field border_none" name="id" th:value="${member.id}" readonly>
+			</div>
+			<div class="input_area">
+				<span class="input_label">새 비밀번호</span>
+				<input class="input_field pw" type="password" name="pw" id="new_password" placeholder="새 비밀번호를 입력해 주세요." />
+			</div>
+			<div class="input_area">
+				<span class="input_label">새 비밀번호 확인</span>
+				<input class="input_field pw" type="password" id="confirm_password"
+					placeholder="새 비밀번호를 한번 더 입력해 주세요." />
+			</div>
+			<div class="input_area">
+				<span class="input_label">이름</span>
+				<div class="input_wrapper">
+					<input type="text" class="input_field_with_button border_none" name="name" th:value="${member.name}" readonly>
+					<button type="button" class="change_button_absolute">변경</button>
+				</div>
+			</div>
+			<div class="input_area">
+				<span class="input_label">이메일</span>
+				<div class="input_wrapper">
+					<input type="email" class="input_field_with_button border_none" name="email" th:value="${member.email}" readonly>
+					<button type="button" class="change_button_absolute">변경</button>
+				</div>
+			</div>
+			<div class="input_area">
+				<span class="input_label">휴대폰번호</span>
+				<div class="input_wrapper">
+					<input type="text" class="input_field_with_button border_none" name="phone" th:value="${member.phone}" readonly>
+					<button type="button" class="change_button_absolute">변경</button>
+				</div>
+			</div>
+			<div class="submit_area">
+				<button type="submit" class="submit_button">확인</button>
+			</div>
+		</form>
+	</div>
+	<script>
+		document.querySelectorAll('.change_button_absolute').forEach(button => {
+			button.addEventListener('click', function () {
+				const input = this.previousElementSibling;
+				
+				const activeInputs = document.querySelectorAll('.input_field_with_button:not([readonly])');
+				if (input.readOnly && activeInputs.length > 0) {
+					alert("하나의 항목만 수정 가능합니다.");
+					return;
+				}
+	
+				if (input.readOnly) {
+					input.readOnly = false;
+					this.textContent = '완료';
+					input.focus();
+				} else {
+					input.readOnly = true;
+					this.textContent = '변경';
+					input.blur();
+				}
+			});
+		});
+		document.querySelectorAll('.input_field_with_button').forEach(input => {
+			input.addEventListener('blur', function (e) {
+				const btn = this.nextElementSibling;
+				if (!btn) return;
+				if (btn.textContent === '완료') {
+					setTimeout(() => {
+						input.focus();
+					}, 0);
+				}
+			});
+		});
+		document.getElementById("infoForm").addEventListener("submit", function (e) {
+			const newPw = document.getElementById("new_password").value.trim();
+			const confirmPw = document.getElementById("confirm_password").value.trim();
+
+			if (newPw !== "" || confirmPw !== "") {
+				if (newPw.length < 4) {
+					alert("비밀번호는 최소 4자 이상이어야 합니다.");
+					e.preventDefault();
+					return;
+				}
+				if (newPw !== confirmPw) {
+					alert("비밀번호가 일치하지 않습니다.");
+					e.preventDefault();
+					return;
+				}
+			}
+			
+			const nameInput = document.querySelector('input[name="name"]');
+			const emailInput = document.querySelector('input[name="email"]');
+			const phoneInput = document.querySelector('input[name="phone"]');
+
+			const name = nameInput.value.trim();
+			const email = emailInput.value.trim();
+			const phone = phoneInput.value.trim();
+
+			const nameRegex = /^[가-힣a-zA-Z\s]+$/;
+			if (name === "") {
+				alert("이름은 필수 입력 항목입니다.");
+				nameInput.focus();
+				e.preventDefault();
+				return;
+			}
+			if (!nameRegex.test(name)) {
+				alert("이름은 한글 또는 영문만 입력 가능합니다.");
+				nameInput.focus();
+				e.preventDefault();
+				return;
+			}
+
+			const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			if (email !== "" && !emailPattern.test(email)) {
+				alert("유효한 이메일 형식을 입력해 주세요.");
+				emailInput.focus();
+				e.preventDefault();
+				return;
+			}
+
+			const phonePattern = /^01[0-9]{8,9}$/;
+			if (phone !== "" && !phonePattern.test(phone)) {
+				alert("유효한 휴대폰 번호를 입력해 주세요. 예: 01012345678");
+				phoneInput.focus();
+				e.preventDefault();
+				return;
+			}
+
+			const emailWarning = emailInput.parentElement.querySelector('.warning-message');
+			const phoneWarning = phoneInput.parentElement.querySelector('.warning-message');
+			if (emailWarning || phoneWarning) {
+				alert("중복된 이메일 또는 휴대폰 번호가 있습니다.");
+				e.preventDefault();
+			}
+		});
+		document.addEventListener('DOMContentLoaded', function() {
+			document.addEventListener('click', function(e){
+				if(e.target.closest(".real_my_page")){
+					location.href="/kyobo/order/index";
+				}
+			});
+			
+			const checkDuplication = (type, value) => {
+				return fetch(`/kyobo/member/check-${type}?${type}=` + encodeURIComponent(value))
+					.then(response => response.json());
+			};
+
+			const emailInput = document.querySelector('input[name="email"]');
+			const phoneInput = document.querySelector('input[name="phone"]');
+			const originalEmail = emailInput.value.trim();
+			const originalPhone = phoneInput.value.trim();
+
+			// 경고 메시지 표시용
+			const showWarning = (input, message) => {
+				let warning = input.parentElement.querySelector('.warning-message');
+				if (!warning) {
+					warning = document.createElement('div');
+					warning.className = 'warning-message';
+					warning.style.color = 'red';
+					warning.style.marginTop = '5px';
+					input.parentElement.appendChild(warning);
+				}
+				warning.textContent = message;
+			};
+
+			const clearWarning = (input) => {
+				const warning = input.parentElement.querySelector('.warning-message');
+				if (warning) {
+					warning.remove();
+				}
+			};
+
+			// 이메일 중복 체크
+			emailInput.addEventListener('blur', async function () {
+				if (!this.readOnly) {
+					const email = this.value.trim();
+					if (email === "" || email === originalEmail) {
+						clearWarning(this);
+						return;
+					}
+
+					const exists = await checkDuplication('email', email);
+					if (exists) {
+						showWarning(this, '이미 사용 중인 이메일입니다.');
+					} else {
+						clearWarning(this);
+					}
+				}
+			});
+
+			// 전화번호 중복 체크
+			phoneInput.addEventListener('blur', async function () {
+				if (!this.readOnly) {
+					const phone = this.value.trim();
+					if (phone === "" || phone === originalPhone) {
+						clearWarning(this);
+						return;
+					}
+
+					const exists = await checkDuplication('phone', phone);
+					if (exists) {
+						showWarning(this, '이미 사용 중인 휴대폰 번호입니다.');
+					} else {
+						clearWarning(this);
+					}
+				}
+			});
+			
+			document.getElementById("infoForm").addEventListener("submit", function (e) {
+				// 기존 비밀번호 체크 코드 유지
+
+				const emailWarning = emailInput.parentElement.querySelector('.warning-message');
+				const phoneWarning = phoneInput.parentElement.querySelector('.warning-message');
+				if (emailWarning || phoneWarning) {
+					alert("중복된 이메일 또는 휴대폰 번호가 있습니다.");
+					e.preventDefault();
+				}
+			});
+		});
+	</script>
+</div>
+</html>

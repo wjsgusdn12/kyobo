@@ -1,0 +1,26 @@
+<!-- fragments/commentItem.html -->
+<div th:fragment="comment">
+	<div class="review_comment_item"  th:attr="data-comment-idx=${comment.commentIdx}">
+		<div class="review_comment_item_header">
+			<span th:text="${comment.writer}"></span>
+			<span th:text="${comment.date}"
+				class="review_comment_item_header_date"></span>
+			<!--로그인한 사용자 체크, 같은 Id 인지 체크 -->
+			<span class="review_comment_updateBtn" sec:authorize="isAuthenticated()"
+				th:if="${comment.writer != null and #authentication.getPrincipal().getUsername() == comment.writer}">수정</span>
+			<span class="review_comment_deleteBtn" sec:authorize="isAuthenticated()"
+				th:if="${comment.writer != null and #authentication.getPrincipal().getUsername() == comment.writer}">삭제</span>
+		</div>
+		<div class="review_comment_body">
+			<div class="review_comment_item_content" th:text="${comment.content}">
+			</div>
+			<div class="review_comment_update_wrap">
+				<textarea class="review_comment_update"></textarea>
+				<div class="review_modifyBtn_wrap">
+					<div class="review_modify_deleteBtn">취소</div>
+					<div class="review_modify_registBtn">등록</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

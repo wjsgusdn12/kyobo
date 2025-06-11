@@ -1,0 +1,218 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="main_area">
+	<style>
+		.searchbar,
+		.search_button,
+		.relative.h-9.w-9 {
+			display: none;
+		}
+
+		.navbar {
+			gap: 25%;
+		}
+
+		.main_area {
+			display: flex;
+			justify-content: center;
+			min-height: 100vh;
+			padding: 50px 0;
+		}
+
+		.check_member_div {
+			width: 55%;
+			min-width: 700px;
+			background-color: white;
+			border-radius: 12px;
+			padding: 40px 50px;
+		}
+
+		.modify_text_div {
+			width: fit-content;
+			padding: 10px 20px;
+			background-color: #5155ae;
+			color: white;
+			font-weight: bold;
+			font-size: 16px;
+			border-radius: 6px;
+			margin-bottom: 30px;
+		}
+
+		h2 {
+			font-size: 24px;
+			margin-bottom: 10px;
+		}
+
+		.gray_text_from_my_page_lock {
+			color: #666;
+			margin-bottom: 20px;
+		}
+
+		.pw_input_from_check_member {
+			width: 350px;
+			height: 40px;
+			border: 1px solid #ccc;
+			border-radius: 6px;
+			padding-left: 15px;
+			font-size: 15px;
+			transition: all 0.2s ease;
+		}
+
+		.pw_input_from_check_member:focus {
+			outline: none;
+			border-color: #5155ae;
+			box-shadow: 0 0 0 3px rgba(81, 85, 174, 0.2);
+		}
+
+		.error_message {
+			display: flex;
+			align-items: center;
+			color: red;
+			font-size: 0.9em;
+			margin-left: 93px;
+			margin-top: 8px;
+			height: auto;
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+
+		.error_message.visible {
+			opacity: 1;
+		}
+
+		.error_icon {
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			width: 18px;
+			height: 18px;
+			border: 1.5px solid red;
+			background-color: white;
+			color: red;
+			border-radius: 50%;
+			font-size: 13px;
+			margin-right: 7px;
+			flex-shrink: 0;
+		}
+
+		.submit_button {
+			width: 150px;
+			height: 45px;
+			background-color: #5155ae;
+			color: white;
+			font-weight: bold;
+			border: none;
+			border-radius: 6px;
+			cursor: pointer;
+			font-size: 15px;
+			transition: all 0.2s ease;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+		}
+
+		.submit_button:hover {
+			background-color: #3b3f92;
+			transform: translateY(-2px);
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+		}
+
+		.submit_button:active {
+			background-color: #2e3275;
+			transform: translateY(0);
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+		}
+
+		.submit_area {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	</style>
+
+
+	<div class="check_member_div">
+		<div class="modify_text_div">회원정보 수정</div>
+		<h2>비밀번호 확인</h2>
+		<div class="gray_text_from_my_page_lock">
+			안전한 개인정보 보호를 위해 비밀번호를 입력해주세요.
+		</div>
+		<br />
+		<hr /><br />
+		<form id="pwForm" th:action="@{/member/my_page_login}" method="post">
+			<p sec:authorize="isAuthenticated()">
+			    로그인한 사용자 : <span sec:authentication="name"></span>
+			</p>
+			<div style="color:red;">
+				test의 비밀번호 : 1234
+			</div><br/>
+			<span>비밀번호</span>
+			<input class="pw_input_from_check_member" type="password" name="pw" id="pw" placeholder="비밀번호를 입력해 주세요." />
+			<div th:if="${error}" class="login_error_text" style="color:red;">
+			    <span th:text="${error}"></span>
+			</div>
+			<div id="pwError" class="error_message">
+				<span class="error_icon">!</span>
+				<span class="error_text"></span>
+			</div>
+			<br /><br />
+			<div class="submit_area">
+				<button type="submit" class="submit_button">확인</button>
+			</div>
+		</form>
+	</div>
+
+	<script>
+	    const pwInput = document.getElementById("pw");
+	    const pwError = document.getElementById("pwError");
+	    const pwErrorText = document.querySelector(".error_text");
+	    const form = document.getElementById("pwForm");
+
+	    // 비밀번호 입력 필드에서 포커스가 벗어났을 때 (blur)
+	    pwInput.addEventListener("blur", function () {
+	        if (pwInput.value.trim() === "") {
+	            pwErrorText.textContent = "비밀번호를 입력해주세요.";
+	            pwError.classList.add("visible");
+	        } else {
+	            pwErrorText.textContent = "";
+	            pwError.classList.remove("visible");
+	        }
+	    });
+
+	    // 폼 제출 시 이벤트 처리
+	    form.addEventListener("submit", function (e) {
+	        e.preventDefault();
+	        const pw = pwInput.value.trim();
+
+	        // 비밀번호가 빈 칸일 경우
+	        if (pw === "") {
+	            pwErrorText.textContent = "비밀번호를 입력해주세요.";
+	            pwError.classList.add("visible");
+	            return;
+	        }
+
+	        // 서버로 비밀번호 확인 요청 보내기
+	        const formData = new FormData(form);
+	        fetch("/kyobo/member/my_page_login", {
+	            method: "POST",
+	            body: formData
+	        })
+	        .then(response => response.json())  // 서버의 응답을 JSON 형식으로 받음
+	        .then(data => {
+	            if (data.success) {
+	                // 비밀번호가 맞으면 my_page로 리디렉션
+	                location.href = "/kyobo/member/my_page";
+	            } else {
+	                // 비밀번호가 틀리면 오류 메시지 표시
+	                pwErrorText.textContent = "비밀번호가 올바르지 않습니다.";
+	                pwError.classList.add("visible");
+	            }
+	        })
+	        .catch(error => {
+	            // 서버 통신 오류 처리
+	            console.error("에러 발생:", error);
+	            pwErrorText.textContent = "서버 오류가 발생했습니다.";
+	            pwError.classList.add("visible");
+	        });
+	    });
+	</script>
+</div>
+
+</html>

@@ -1,0 +1,282 @@
+<div layout:fragment="content" class="main_area">
+	<style>
+		* {
+			box-sizing: border-box;
+			padding: 0;
+			margin: 0;
+			transition: background-color 0.5s ease;
+		}
+		.main_area {
+			width: 100%;
+			min-height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.join_form {
+			width: 350px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 50px;
+		}
+		.home_logo_button {
+			width: 171px;
+			height: 56px;
+			margin-bottom: 30px;
+		}
+		.signup_form {
+			width: 100%;
+			padding: 20px;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.join_form_text {
+			width: 100%;
+			height: 30px;
+			font-weight: bold;
+			font-size: 15px;
+		}
+		.join_form_input {
+			width: 100%;
+			height: 40px;
+			padding: 10px;
+			margin-top: -3px;
+			margin-bottom: 10px;
+			border: 1px solid lightgray;
+			border-radius: 5px;
+		}
+		.join_form_input:focus {
+			outline: none;
+			border: 1px solid #474c98;
+			box-shadow: 0 0 5px rgba(71, 76, 152, 0.5);
+		}
+		.join_form_submit {
+			width: 100%;
+			height: 40px;
+			color: white;
+			font-size: 15px;
+			font-weight: bold;
+			background-color: lightgray;
+			border-radius: 5px;
+			border: none;
+		}
+		.join_form_submit.on {
+			background-color: #474c98;
+		}
+		.join_form_submit.on:hover {
+			background-color: #2c307c;
+			cursor: pointer;
+		}
+		.warning-text {
+			color: red;
+			font-size: 13px;
+			margin-top: -5px;
+			margin-bottom: 10px;
+			width: 100%;
+			display: none;
+		}
+		.join_text {
+			width: 310px;
+			display: flex;
+			justify-content: flex-start;
+		}
+		.join_text.underline {
+			padding: 0px 0px 10px 0px;
+			margin: 0px 0px 10px 0px;
+			border-bottom: 3px solid lightgray;
+		}
+		input[type="number"]::-webkit-inner-spin-button,
+		input[type="number"]::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		.success-text {
+			color: green;
+			font-size: 13px;
+			margin-top: -5px;
+			margin-bottom: 10px;
+			width: 100%;
+			display: none;
+		}
+	</style>
+
+	<div class="join_form">
+		<a class="home_logo_button" th:href="@{/}">
+			<img class="home_logo_button"
+				src="https://contents.kyobobook.co.kr/resources/fo/images/common/ink/img_logo_kyobo_member@2x.png">
+		</a>
+		<h2 class="join_text underline">회원가입</h2>
+		<h3 class="join_text">회원정보 입력</h3>
+		<div style="color:red;">
+			Ajax 중복체크/유효성체크 기능 구현 했습니다<br/>
+			1. 아이디 : test<br/>
+			2. 휴대폰번호 : 01099999999<br/>
+			3. 이메일 : test@gmail.com
+		</div>
+		<form class="signup_form" th:action="@{/member/join}" th:object="${dto}" method="post">
+			<div class="join_form_text">아이디</div>
+			<input class="join_form_input" type="text" th:field="*{id}" id="signup-id" placeholder="아이디를 입력해 주세요." />
+			<div class="warning-text" id="signup-id-warning">아이디를 입력해 주세요.</div>
+			<div class="success-text" id="signup-id-success">사용 가능한 아이디입니다.</div>
+			
+			<div class="join_form_text">비밀번호</div>
+			<input class="join_form_input" type="password" th:field="*{pw}" id="signup-pw" placeholder="비밀번호를 입력해 주세요." />
+			<div class="warning-text" id="signup-pw-warning">비밀번호를 입력해 주세요.</div>
+
+			<div class="join_form_text">비밀번호 확인</div>
+			<input class="join_form_input" type="password" id="signup-pw-confirm" placeholder="비밀번호를 다시 입력해 주세요." />
+			<div class="warning-text" id="signup-pw-confirm-warning">비밀번호가 일치하지 않습니다.</div>
+
+			<div class="join_form_text">이름</div>
+			<input class="join_form_input" type="text" th:field="*{name}" id="signup-name" placeholder="이름을 입력해 주세요." />
+			<div class="warning-text" id="signup-name-warning">이름을 입력해 주세요.</div>
+
+			<div class="join_form_text">휴대폰번호</div>
+			<input class="join_form_input" type="number" th:field="*{phone}" id="signup-phone" placeholder="숫자만 입력해 주세요." />
+			<div class="warning-text" id="signup-phone-warning">휴대폰 번호를 입력해 주세요.</div>
+			<div class="success-text" id="signup-phone-success">사용 가능한 휴대폰번호입니다.</div>
+
+			<div class="join_form_text">이메일</div>
+			<input class="join_form_input" type="email" th:field="*{email}" id="signup-email" placeholder="이메일 주소를 입력해 주세요." />
+			<div class="warning-text" id="signup-email-warning">올바른 이메일을 입력해 주세요.</div>
+			<div class="success-text" id="signup-email-success">사용 가능한 이메일입니다.</div>
+
+			<br />
+			<input class="join_form_submit" type="submit" value="회원가입" disabled />
+		</form>
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+		    const fields = ['id', 'pw', 'pw-confirm', 'name', 'phone', 'email'];
+		    const inputs = {};
+		    const warnings = {};
+		    const successTexts = {};
+		    const touched = {};
+
+		    fields.forEach(field => {
+		        inputs[field] = document.getElementById(`signup-${field}`);
+		        warnings[field] = document.getElementById(`signup-${field}-warning`);
+		        touched[field] = false;
+		    });
+
+		    // 이메일, 휴대폰번호 성공 메시지 요소 저장
+		    successTexts['id'] = document.getElementById('signup-id-success');
+		    successTexts['email'] = document.getElementById('signup-email-success');
+		    successTexts['phone'] = document.getElementById('signup-phone-success');
+
+		    const submitBtn = document.querySelector('.join_form_submit');
+
+		    function validateForm() {
+		        let valid = true;
+		        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+		        fields.forEach(field => {
+		            let isValid = true;
+		            const value = inputs[field].value.trim();
+
+		            if (field === 'pw-confirm') {
+		                isValid = value !== '' && value === inputs['pw'].value.trim();
+		            } else if (field === 'email') {
+		                isValid = value !== '' && emailRegex.test(value);
+		            } else {
+		                isValid = value !== '';
+		            }
+
+		            if (field === 'id' || field === 'email' || field === 'phone') {
+		                const validFlag = inputs[field].dataset.valid === 'true';
+		                if (!validFlag) {
+		                    isValid = false;
+		                }
+		            }
+
+		            if (!isValid) {
+		                valid = false;
+		            }
+
+		            if (!isValid && touched[field]) {
+		                warnings[field].style.display = 'block';
+		            } else {
+		                warnings[field].style.display = 'none';
+		            }
+		        });
+
+		        if (valid) {
+		            submitBtn.classList.add('on');
+		            submitBtn.disabled = false;
+		        } else {
+		            submitBtn.classList.remove('on');
+		            submitBtn.disabled = true;
+		        }
+		    }
+
+		    function checkDuplicate(field, urlParam) {
+		        const value = inputs[field].value.trim();
+
+		        if (value === '') {
+		            warnings[field].textContent = `${field === 'phone' ? '휴대폰 번호' : field === 'email' ? '이메일' : '아이디'}를 입력해 주세요.`;
+		            warnings[field].style.display = 'block';
+		            successTexts[field].style.display = 'none';
+		            inputs[field].dataset.valid = 'false';
+		            validateForm();
+		            return;
+		        }
+
+		        fetch(`/kyobo/member/check-${urlParam}?${urlParam}=${encodeURIComponent(value)}`)
+		            .then(res => res.json())
+		            .then(data => {
+		                if (data === true) {
+		                    // 중복 있음
+		                    warnings[field].textContent = `이미 등록된 ${field === 'phone' ? '휴대폰 번호' : field === 'email' ? '이메일' : '아이디'}입니다.`;
+		                    warnings[field].style.display = 'block';
+		                    successTexts[field].style.display = 'none';
+		                    inputs[field].dataset.valid = 'false';
+		                } else {
+		                    // 사용 가능
+		                    warnings[field].style.display = 'none';
+		                    successTexts[field].style.display = 'block';
+		                    successTexts[field].textContent = `사용 가능한 ${field === 'phone' ? '휴대폰 번호' : field === 'email' ? '이메일' : '아이디'}입니다.`;
+		                    inputs[field].dataset.valid = 'true';
+		                }
+		                validateForm();
+		            })
+		            .catch(err => {
+		                console.error(`${field} 중복 확인 실패`, err);
+		            });
+		    }
+
+		    fields.forEach(field => {
+		        inputs[field].addEventListener('blur', () => {
+		            touched[field] = true;
+
+		            if (field === 'id') {
+		                checkDuplicate('id', 'id');
+		            } else if (field === 'email') {
+		                checkDuplicate('email', 'email');
+		            } else if (field === 'phone') {
+		                checkDuplicate('phone', 'phone');
+		            } else {
+		                validateForm();
+		            }
+		        });
+
+		        inputs[field].addEventListener('input', () => {
+		            validateForm();
+		        });
+		    });
+
+		    document.querySelector('.signup_form').addEventListener('submit', function (e) {
+		        if (submitBtn.disabled) {
+		            e.preventDefault();
+		            return;
+		        }
+		        alert('회원가입이 완료되었습니다!');
+		    });
+		});
+
+	</script>
+
+</div>

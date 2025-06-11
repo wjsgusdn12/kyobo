@@ -1,0 +1,184 @@
+<div layout:fragment="content" class="main_area">
+	<style>
+		*{
+			transition: background-color 0.5s ease;
+		}
+		.login_form_div{
+			width:100%;
+			height:100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.login_form{
+			width: 350px;
+			height: 600px;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+		}
+		.home_logo_button{
+			width:171px;
+			height:56px;
+			margin-bottom: 50px;
+		}
+		.login_input_form{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+		.input_pw{
+			margin-bottom:20px;
+		}
+		.login_button{
+			margin-bottom:15px;
+		}
+		.join_link_button{
+			width:350px;
+			height:50px;
+			color:rgb(0, 0, 128);
+			font-size:16px;
+			font-weight:bold;
+			border:1px solid rgb(0, 0, 128);
+			border-radius:5px;
+			background-color:white;
+			cursor:pointer;
+		}
+		.join_link_button:hover{
+			background-color:rgba(0, 0, 128, 0.075);
+		}
+		.login_button{
+			width:350px;
+			height:50px;
+			font-size: 16px;
+			font-weight: bold;
+			color: white;
+			background-color: rgb(200, 200, 200);
+			border-radius: 5px;
+			border:none;
+		}
+		.login_button.on{
+			width:350px;
+			height:50px;
+			font-size: 16px;
+			font-weight: bold;
+			color: white;
+			background-color: #5055b1;
+			border-radius: 5px;
+			border:none;
+		}
+		.login_button.on:hover{
+			background-color:#2c307c;
+			cursor: pointer;
+		}
+		.input_id{
+			width:350px;
+			height:50px;
+			border: 1px solid gray;
+			border-radius: 5px 5px 0px 0px;
+			padding: 10px;
+		}
+		.input_pw{
+			width:350px;
+			height:50px;
+			border: 1px solid gray;
+			border-radius: 0px 0px 5px 5px;
+			margin-top: -1px;
+			padding: 10px;
+		}
+		.join_link_button{
+			margin-top: 60px;
+		}
+		.find_account_link{
+			background-color: white;
+			border: none;
+			color:gray;
+			cursor: pointer;
+		}
+		.flex_end{
+			display: flex;
+		    width: 100%;
+		    justify-content: flex-end;
+		}
+		.login_error_text{
+		    color: red;
+		    display: flex;
+		    align-items: flex-start;
+		    justify-content: flex-start;
+		    width: 100%;
+		    height: 40px;
+		    margin: -15px 0 0 0;
+		}
+		.test_id_text{
+			color:red; 
+			font-weight:bold;
+			margin: -20px 0px 20px 0px;
+		}
+	</style>
+	<div class="login_form_div">
+		<form class="login_form" th:action="@{/login}" method="post">
+			<a class="home_logo_button" th:href="@{/}">
+                <img class="home_logo_button" src="https://contents.kyobobook.co.kr/resources/fo/images/common/ink/img_logo_kyobo_member@2x.png">
+            </a>
+			<div class="login_input_form">
+				<span class="test_id_text">
+					아이디:test<br/>
+					비밀번호:1234
+				</span>
+				<input class="input_id" type="text" name="username" id="id" value="" placeholder="아이디를 입력해 주세요."/>
+				<input class="input_pw" type="password" name="password" id="pw" value="" placeholder="비밀번호를 입력해 주세요."/>
+				<div th:if="${param.error}" class="login_error_text">
+				    아이디 또는 비밀번호가 잘못되었습니다.
+				</div>
+				<input class="login_button" type="submit" value="로그인"/>
+				<div class="flex_end">
+					<div></div>
+					<div>
+						<input class="find_account_link" type="button" value="아이디 찾기"/>
+						<span style="color: gray; font-size: 12px;">|</span>
+						<input class="find_account_link" type="button" value="비밀번호 찾기"/>
+					</div>
+				</div>
+			</div>
+			<input class="join_link_button" type="button" value="회원가입"/>
+		</form>
+	</div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			
+			const loginButton = document.querySelector('.login_button');
+			const idInput = document.querySelector('.input_id');
+			const pwInput = document.querySelector('.input_pw');
+
+			idInput.addEventListener('input', toggleLoginButton);
+			pwInput.addEventListener('input', toggleLoginButton);
+
+			function toggleLoginButton() {
+				const isFilled = idInput.value.trim() !== '' && pwInput.value.trim() !== '';
+				    
+			    if (isFilled) {
+			      loginButton.classList.add('on');   // 버튼 활성화 (파란색)
+			    } else {
+			      loginButton.classList.remove('on'); // 버튼 비활성화 (회색)
+			    }
+			}
+		 	
+			document.addEventListener('click', function(event){
+				if(event.target){
+					let link = event.target.value;
+					if (link === '비밀번호 찾기') {
+					    location.href="find_account#pw";
+				    } else if (link === '아이디 찾기') {
+				     	location.href="find_account#id";
+				    } else if (link === '회원가입') {
+						location.href="member/join";
+					} else if (link === '마이페이지') {
+						location.href="my_page_lock";
+					}
+				}
+			});
+			
+		});
+	</script>
+</div>

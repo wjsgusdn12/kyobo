@@ -1,0 +1,425 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="main_area">
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		.main_area {
+			display: flex;
+			width: 100%;
+			height: 100%;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.book_list_area {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+		}
+
+		.main_book_div {
+			display: flex;
+			align-items: center;
+			border-bottom: 1px solid lightgray;
+			justify-content: space-between;
+			padding: 30px;
+		}
+
+		.main_book_image {
+			width: 144px;
+			height: 208px;
+			cursor: pointer;
+		}
+
+		.main_book_button_area {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: 100px;
+		}
+
+		.main_book_info {
+			display: flex;
+			gap: 20px;
+		}
+
+		.main_book_info_text {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 8px;
+			width: 560px;
+		}
+
+		.main_book_number {
+			background-color: rgb(118, 118, 118);
+			width: 22px;
+			height: 22px;
+			border-radius: 5px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: white;
+			font-size: 13px;
+			font-weight: bold;
+		}
+
+		.main_book_title {
+			font-weight: bold;
+			font-size: 16px;
+			color: black;
+			width: fit-content;
+		}
+
+		.main_book_title:hover {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+
+		.main_book_author {
+			color: gray;
+			font-size: 15px;
+		}
+
+		.main_book_price {
+			font-weight: bold;
+			font-size: 16px;
+		}
+
+		.main_book_desc {
+			color: gray;
+			font-size: 13px;
+		}
+
+		.main_book_rating_text {
+			font-weight: bold;
+			font-size: 14px;
+			color: black;
+		}
+
+		.main_book_rating_size {
+			color: gray;
+			font-size: 14px;
+		}
+
+		.main_book_rating {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+		}
+
+		.book_add_cart_button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+			font-size: 14px;
+			height: 38px;
+			border-radius: 0.5rem;
+			padding: 0.5625rem 0.875rem;
+			background-color: #767676;
+			color: white;
+			font-weight: 500;
+			width: 100%;
+			cursor: pointer;
+			border: none;
+			opacity: 1;
+			pointer-events: auto;
+		}
+
+		.book_add_cart_button:hover {
+			background-color: #1f2937;
+			color: white;
+		}
+
+		.book_add_cart_button:active {
+			background-color: #111827;
+		}
+
+		.book_add_cart_button:disabled {
+			background-color: #9ca3af;
+			cursor: not-allowed;
+			opacity: 0.5;
+			pointer-events: none;
+		}
+
+		.book_buy_button {
+			margin-top: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+			font-size: 14px;
+			height: 38px;
+			border-radius: 0.5rem;
+			padding: 0.5625rem 0.875rem;
+			background-color: #3b58ab;
+			color: white;
+			font-weight: 500;
+			width: 100%;
+			cursor: pointer;
+			border: none;
+			opacity: 1;
+			pointer-events: auto;
+		}
+
+		.book_buy_button:hover {
+			background-color: #1e3a8a;
+			color: white;
+		}
+
+		.book_buy_button:active {
+			background-color: #1e3a8a;
+		}
+
+		.book_buy_button:disabled {
+			background-color: #60a5fa;
+			border: 1px solid #60a5fa;
+			color: white;
+			opacity: 0.5;
+			pointer-events: none;
+		}
+
+		.pagination {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 20px;
+			gap: 10px;
+		}
+
+		.pagination a {
+			padding: 8px 12px;
+			background-color: #f4f4f4;
+			border-radius: 5px;
+			text-decoration: none;
+			color: #333;
+			font-weight: bold;
+			font-size: 14px;
+			cursor: pointer;
+			opacity: 1;
+			pointer-events: auto;
+		}
+
+		.pagination a:hover {
+			background-color: #ddd;
+		}
+
+		.pagination a.active {
+			background-color: #3b58ab;
+			color: white;
+		}
+
+		.pagination a.off {
+			background-color: #ccc;
+			color: #999;
+			opacity: 0.5;
+			pointer-events: none;
+			cursor: not-allowed;
+		}
+
+		.my_home_header {
+			width: 100%;
+			height: 294px;
+			background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/bg_myroom_main@2x.png);
+			background-size: cover;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		}
+
+		.login_member {
+			width: 70px;
+			height: 70px;
+			background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/img_no_profile@2x.png);
+			background-size: cover;
+			border-radius: 50%;
+			left: 104px;
+			top: 164px;
+		}
+
+		.login_member_id {
+			font-weight: 700;
+			font-size: 20px;
+			color: white;
+			top: 170px;
+			left: 103px;
+		}
+
+		.recentOrder_parent {
+			width: 925px;
+			margin: 20px auto 0;
+		}
+
+		.recentOrder_wrapper {
+			margin-top: 26px;
+			display: flex; 
+			flex-direction: column-reverse;
+		}
+
+		.recentOrder_parent>span {
+			font-size: 20px;
+			font-weight: 700;
+		}
+
+		.recentOrder {
+			display: flex;
+			border-top: 1px solid #ccc;
+			justify-content: flex-start;
+			gap: 21px;
+			height: 125px;
+		}
+		.recentOrder:last-of-type{
+			border-bottom: 1px solid #ccc;
+		}
+
+		.recentOrder_info {
+			border-right: 1px solid #ccc;
+			font-size: 15px;
+			font-weight: 700;
+			width: 130px;
+			box-sizing: border-box;
+			padding: 23px;
+		}
+
+		.recentOrder_pro {
+			display: flex;
+			width: 564px;
+			box-sizing: border-box;
+			padding: 15px;
+		}
+
+		.recentOrder_pro_thumbnail {
+			width: 62px;
+			height: 92px;
+		}
+		.recentOrder_pro_thumbnail > img{
+			width: 62px;
+			height: 100%;
+		}
+
+		.recentOrder_pro_detail {
+			font-size: 13px;
+			margin-left: 15px;
+		}
+
+		.recentOrder_price {
+			width: 160px;
+			font-size: 16px;
+			font-weight: 700;
+			box-sizing: border-box;
+			padding: 16px;
+		}
+		.my_page_button {
+			margin-top: 10px;
+			margin-left: 10px;
+			display: inline-block;
+			color: white;
+			border: 1px solid white;
+			padding: 8px 16px;
+			border-radius: 8px;
+			font-size: 14px;
+			font-weight: bold;
+			text-decoration: none;
+			transition: all 0.3s ease;
+		}
+
+		.my_page_button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		}
+		.recentOrder {
+			display: flex;
+			border-top: 1px solid #ccc;
+			justify-content: flex-start;
+			gap: 21px;
+			height: 125px;
+			transition: background-color 0.3s ease;
+			cursor: pointer;
+		}
+
+		.recentOrder:hover {
+			background-color: #f9f9f9;
+		}
+
+		.recentOrder_pro_detail span:first-child {
+			font-weight: bold;
+			font-size: 15px;
+			color: #333;
+		}
+
+		.recentOrder_pro_detail span {
+			display: inline-block;
+			margin-top: 4px;
+		}
+
+		.recentOrder_info {
+			font-size: 14px;
+			color: #555;
+		}
+	</style>
+	<div class="book_list_area">
+		<div class="my_home_header">
+			<div class="login_member_parent">
+				<div class="login_member"></div>
+				<span class="login_member_id" th:text="|${member.name} 님|"></span>
+				<a class="my_page_button" th:href="@{/my_page_lock}">회원정보 수정</a>
+			</div>
+		</div>
+		<div class="recentOrder_parent">
+			<span>최근 주문</span>
+			<div class="recentOrder_wrapper">
+				<div class="recentOrder" th:each="order : ${bookOrderListDto}">
+					<div class="recentOrder_info" th:text="${order.orderDate}">
+					</div>
+					<div class="recentOrder_pro">
+						<div class="recentOrder_pro_thumbnail"><img th:src="${order.thumbnail}"/></div>
+						<div class="recentOrder_pro_detail">
+							<span th:text="${order.bookName}"></span>
+							<span th:if="${order.totalCount==1}" th:text="|${order.totalCount} 건| "></span>
+							<span th:if="${order.totalCount > 1}" th:text="|외 ${order.totalCount-1} 건| "></span>
+							<br/><span th:text="|수량 : ${order.totalCount}|"></span>
+						</div>
+					</div>
+					<div class="recentOrder_price" th:text="|${order.totalPrice} 원 |">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const bookPrices = document.querySelectorAll('.main_book_price');
+
+			bookPrices.forEach(function (priceElement) {
+				let price = priceElement.textContent.replace('원', '').trim();
+				if (price) {
+					let formattedPrice = formatPrice(price);
+					priceElement.textContent = formattedPrice + '원';
+				}
+			});
+			function formatPrice(price) {
+				return Number(price).toLocaleString('ko-KR');
+			}
+			
+			document.querySelectorAll('.recentOrder_price').forEach(el => {
+				let text = el.textContent.trim();
+				let match = text.match(/^(\d+)\s*원$/);
+				if (match) {
+					let num = Number(match[1]);
+					if (!isNaN(num)) {
+						el.textContent = num.toLocaleString('ko-KR') + ' 원';
+					}
+				}
+			});
+		});
+	</script>
+</div>
+</html>

@@ -1,0 +1,148 @@
+<div class="main_area">
+	<style>
+		* {
+			box-sizing: border-box;
+			padding: 0;
+			margin: 0;
+			transition: background-color 0.5s ease;
+		}
+
+		.main_area {
+			width: 100%;
+			min-height: 73vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.result_form {
+			width: 350px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 50px;
+		}
+
+		.home_logo_button {
+			width: 171px;
+			height: 56px;
+			margin-bottom: 30px;
+		}
+
+		h3.result_title {
+			font-size: 20px;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		.result_box {
+			width: 100%;
+			background-color: #f5f5f5;
+			border-radius: 8px;
+			padding: 20px;
+			margin-bottom: 30px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.result_box .id {
+			font-weight: bold;
+			font-size: 16px;
+			margin-bottom: 5px;
+		}
+
+		.result_box .info {
+			font-size: 13px;
+			color: gray;
+		}
+
+		.button_group {
+			display: flex;
+			gap: 10px;
+			width: 100%;
+		}
+
+		.button_group button {
+			flex: 1;
+			height: 40px;
+			font-size: 15px;
+			font-weight: bold;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		.btn-reset {
+			background-color: white;
+			color: #474c98;
+			border: 1px solid #474c98;
+		}
+
+		.btn-reset:hover {
+			background-color: #f0f0f0;
+		}
+
+		.btn-login {
+			background-color: #474c98;
+			color: white;
+			border: none;
+		}
+
+		.btn-login:hover {
+			background-color: #2c307c;
+		}
+
+		.ico_img_box {
+			margin-bottom: 20px;
+		}
+
+		.ico_member_restore {
+			display: inline-block;
+			width: 69px;
+			height: 52px;
+			background-repeat: no-repeat;
+			vertical-align: top;
+			background-size: 69px 52px;
+			background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_member_restore@2x.png);
+		}
+	</style>
+	<div class="result_form">
+		<a class="home_logo_button" th:href="@{/}">
+			<img class="home_logo_button"
+				src="https://contents.kyobobook.co.kr/resources/fo/images/common/ink/img_logo_kyobo_member@2x.png">
+		</a>
+		<div class="ico_img_box">
+			<span class="ico_member_restore"></span>
+		</div>
+		<h3 class="result_title">본인정보와 일치하는 결과입니다.<br /> 로그인 후 이용해주세요.</h3>
+		<div class="result_box">
+			<div class="id">
+				<div th:if="${member != null}">
+			        <p>회원 ID : <span th:text="${member.id}"></span></p>
+					<input type="hidden" class="foundMemberId" th:value="${member.id}"/>
+					<input type="hidden" class="foundMemberName" th:value="${member.name}"/>
+					<input type="hidden" class="foundMemberPhone" th:value="${member.phone}"/>
+			    </div>
+				<div th:if="${error != null}">
+			        <p th:text="${error}"></p>
+			    </div>
+			</div>
+			<div class="info">
+				가입일 <span th:text="${#temporals.format(member.joinDate, 'yyyy.MM.')}"></span> | 인터넷교보문고
+			</div>
+		</div>
+		<div class="button_group">
+			<button class="btn-reset" onclick="resetPassword()">비밀번호 재설정</button>
+			<button class="btn-login" onclick="location.href='/kyobo/login'">로그인</button>
+		</div>
+	</div>
+	<script>
+	    function resetPassword() {
+			let userId = document.querySelector(".foundMemberId").value;
+			let userName = document.querySelector(".foundMemberName").value;
+			let userPhone = document.querySelector(".foundMemberPhone").value;
+	        location.href = '/kyobo/member/reset-password?id='+userId+'&name='+userName+'&phone='+userPhone;
+	    }
+	</script>
+</div>
