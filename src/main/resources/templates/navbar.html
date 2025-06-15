@@ -213,11 +213,26 @@
 			margin: 20px 0px 20px 20px;
 			color: red;
 		}
+		.home_and_api_spec{
+			display: flex;
+			flex-direction: column;
+			color: #3b58ab;
+		}
+		.home_and_api_spec>b{
+			width: 128px;
+			border: 2px solid #3b58ab;
+			border-radius: 5px;
+		}
 	</style>
-	<a th:href="@{/}">
-	    <img src="https://contents.kyobobook.co.kr/resources/fo/images/common/ink/united/logo_book.svg"
-	    class="home_button" fetchpriority="high" loading="eager" width="120" height="44" decoding="async" data-nimg="1" style="color: transparent; width: 120px; height: 44px;">
-	</a>
+	<div class="home_and_api_spec">
+		<a th:href="@{/}">
+		    <img src="https://contents.kyobobook.co.kr/resources/fo/images/common/ink/united/logo_book.svg"
+		    class="home_button" fetchpriority="high" loading="eager" width="120" height="44" decoding="async" data-nimg="1" style="color: transparent; width: 120px; height: 44px;">
+		</a>
+		<b><a href="https://www.notion.so/api-21159556933c801f8b7ee5544d52a3dc">
+			api 명세 바로가기
+		</a></b>
+	</div>
 	<form class="search_form" th:action="@{/search_result}" method="get">
 		<input class="searchbar" type="text" id="kw" name="kw" placeholder="검색어를 입력하세요"/>
 		<button type="submit" class="search_button">
